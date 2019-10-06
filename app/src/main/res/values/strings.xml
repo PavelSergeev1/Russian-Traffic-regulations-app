@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">HandBookLiveDataRoom</string>
     <string name="add">Add category</string>
+    <string name="delete">Delete</string>
+    <string name="category_image_description">Category Imauge</string>
+
 </resources>

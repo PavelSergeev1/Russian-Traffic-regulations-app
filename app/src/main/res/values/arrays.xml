@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="categories">
+        <item>First category</item>
+        <item>Second category</item>
+        <item>Third category</item>
+        <item>Fourth category</item>
+        <item>Fifth category</item>
+        <item>Sixth category</item>
+        <item>Seventh category</item>
+        <item>Eighth category</item>
+        <item>Ninth category</item>
+        <item>Tenth category</item>
+        <item>Eleventh category</item>
+        <item>Twelfth category</item>
+        <item>Thirteenth category</item>
+        <item>Fourteenth category</item>
+        <item>Fifteenth category</item>
+    </string-array>
+
+    <string-array name="categories_short_desc">
+        <item>Short description about this category, some keywords or tags. Blah-blah-blah.</item>
+    </string-array>
+
+    <string-array name="categories_image_names">
+        <item>R.drawable.image_1</item>
+        <item>R.drawable.image_2</item>
+        <item>R.drawable.image_3</item>
+        <item>R.drawable.image_4</item>
+        <item>R.drawable.image_5</item>
+        <item>R.drawable.image_6</item>
+        <item>R.drawable.image_7</item>
+        <item>R.drawable.image_6</item>
+        <item>R.drawable.image_5</item>
+        <item>R.drawable.image_4</item>
+        <item>R.drawable.image_3</item>
+        <item>R.drawable.image_2</item>
+        <item>R.drawable.image_1</item>
+        <item>R.drawable.image_5</item>
+        <item>R.drawable.image_3</item>
+    </string-array>
+
+</resources>

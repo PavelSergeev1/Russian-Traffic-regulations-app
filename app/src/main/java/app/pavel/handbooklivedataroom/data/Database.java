@@ -25,6 +25,9 @@ public abstract class Database extends RoomDatabase {
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                         Database.class, "Database.db")
                         .allowMainThreadQueries()
+
+                        /**
+
                         .addCallback(new Callback() {
                             @Override
                             public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -34,11 +37,16 @@ public abstract class Database extends RoomDatabase {
                                                 .categoryDao().saveAll(CATEGORIES));
                             }
                         })
+
+                         */
+
                         .build();
             }
             return INSTANCE;
         }
     }
+
+    /**
 
     private final static List<Category> CATEGORIES = Arrays.asList(
             new Category("Winter Olympics: Aksel Lund Svindal wins downhill gold at 35 in Pyeongchang", "Norway's Aksel Lund Svindal became the oldest Olympic alpine skiing champion as he held off Kjetil Jansrud to win downhill gold at the age of 35.\n" +
@@ -55,4 +63,6 @@ public abstract class Database extends RoomDatabase {
                     "\n" +
                     "An online video showed the bizarre incident took place on Sunday during the Lunar New Year travel rush.")
     );
+
+     */
 }

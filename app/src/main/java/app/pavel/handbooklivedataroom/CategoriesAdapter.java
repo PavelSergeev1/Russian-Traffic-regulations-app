@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -69,19 +70,22 @@ public class CategoriesAdapter extends
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        private ImageView imageView;
         private TextView tvTitle, tvContent;
         private Button btnDelete;
 
         ViewHolder(View itemView) {
             super(itemView);
 
-            tvTitle = itemView.findViewById(R.id.tvTiyle);
+            imageView = itemView.findViewById(R.id.imageView);
+            tvTitle = itemView.findViewById(R.id.tvTitle);
             tvContent = itemView.findViewById(R.id.tvContent);
             btnDelete = itemView.findViewById(R.id.btnDelete);
         }
 
         void bind(final Category category) {
             if (category != null) {
+                imageView.setImageBitmap();
                 tvTitle.setText(category.getTitle());
                 tvContent.setText(category.getContent());
                 btnDelete.setOnClickListener(v -> {

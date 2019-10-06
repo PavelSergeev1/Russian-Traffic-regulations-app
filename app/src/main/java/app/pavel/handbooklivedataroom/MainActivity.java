@@ -11,11 +11,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-//import android.widget.Toolbar;
-
-//import android.support.v7.widget.Toolbar;
 
 import app.pavel.handbooklivedataroom.data.Category;
+import app.pavel.handbooklivedataroom.data.Database;
+import app.pavel.handbooklivedataroom.utils.DatabaseFilling;
 
 public class MainActivity extends AppCompatActivity
     implements CategoriesAdapter.OnDeleteButtonClickListener {
@@ -27,6 +26,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        DatabaseFilling.fillingAsync(Database.getInstance(this));
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         if (item.getItemId() == R.id.addCategory) {
             categoryViewModel.saveCategory(
                     new Category("This is a category title",
-                            "This is a category content"));
+                            "This is a category content", "R.drawable.image_1"));
             return true;
         }
         else
