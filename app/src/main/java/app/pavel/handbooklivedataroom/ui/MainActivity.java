@@ -1,4 +1,4 @@
-package app.pavel.handbooklivedataroom;
+package app.pavel.handbooklivedataroom.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,35 +7,34 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import app.pavel.handbooklivedataroom.R;
 import app.pavel.handbooklivedataroom.data.Category;
-import app.pavel.handbooklivedataroom.data.Database;
-import app.pavel.handbooklivedataroom.utils.DatabaseFilling;
 
+// implements CategoriesAdapter.OnDeleteButtonClickListener {
 public class MainActivity extends AppCompatActivity
-    implements CategoriesAdapter.OnDeleteButtonClickListener {
+    implements CategoriesAdapter.OnCategoryClickListener {
 
+    private AppViewModel appViewModel;
     private CategoriesAdapter categoriesAdapter;
-    private CategoryViewModel categoryViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        DatabaseFilling.fillingAsync(Database.getInstance(this));
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        categoriesAdapter = new CategoriesAdapter(this, this);
+        categoriesAdapter = new CategoriesAdapter( this, this);
 
-        categoryViewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
-        categoryViewModel.getAllCategories()
+        appViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+        appViewModel.getAllCategories()
                 .observe(this, categories -> categoriesAdapter.setData(categories));
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.addCategory) {
-            categoryViewModel.saveCategory(
+            appViewModel.saveCategory(
                     new Category("This is a category title",
                             "This is a category content", "R.drawable.image_1"));
             return true;
@@ -65,7 +64,24 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onDeleteButtonClickListener(Category category) {
-        categoryViewModel.deleteCategory(category);
+    public void onCategoryClickListener(String categoryTitle) {
+        // start CategoryActivity
+        Intent intent = new Intent(this, CategoryActivity.class);
+        intent.putExtra("categoryTitle", categoryTitle);
+        startActivity(intent);
     }
+
+    /**
+
+    @Override
+    public void onDeleteButtonClickListener(Category category) {
+        appViewModel.deleteCategory(category);
+    }
+
+    */
+
+    // WARNING
+    // Schema export directory is not provided to the annotation processor so we cannot export
+    // the schema. You can either provide `room.schemaLocation` annotation processor argument
+    // OR set exportSchema to false.
 }

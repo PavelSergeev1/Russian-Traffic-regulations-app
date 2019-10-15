@@ -11,20 +11,20 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface CategoryDao {
+public interface LaunchDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void saveAll(List<Category> categories);
+    void saveAll(List<Launch> launch);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void save(Category category);
+    void save(Launch launch);
 
     @Update
-    void update(Category category);
+    void update(Launch launch);
 
     @Delete
-    void delete(Category category);
+    void delete(Launch launch);
 
-    @Query("SELECT * FROM categories")
-    LiveData<List<Category>> findAll();
+    @Query("SELECT * FROM launch")
+    LiveData<List<Launch>> findAll();
 }

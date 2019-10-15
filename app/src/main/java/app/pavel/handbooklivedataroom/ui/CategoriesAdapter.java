@@ -1,10 +1,9 @@
-package app.pavel.handbooklivedataroom;
+package app.pavel.handbooklivedataroom.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,24 +14,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.pavel.handbooklivedataroom.R;
 import app.pavel.handbooklivedataroom.data.Category;
+import app.pavel.handbooklivedataroom.utils.HandbookLiveDataRoom;
 
 public class CategoriesAdapter extends
         RecyclerView.Adapter<CategoriesAdapter.ViewHolder>{
 
-    public interface OnDeleteButtonClickListener {
-        void onDeleteButtonClickListener(Category category);
+    public interface OnCategoryClickListener {
+        void onCategoryClickListener(String categotyTitle);
     }
 
     private List<Category> data;
     private Context context;
     private LayoutInflater layoutInflater;
-    private OnDeleteButtonClickListener onDeleteButtonClickListener;
+    private OnCategoryClickListener onCategoryClickListener;
 
-    public CategoriesAdapter(Context context, OnDeleteButtonClickListener listener) {
+    public CategoriesAdapter(Context context, OnCategoryClickListener listener) {
         this.data = new ArrayList<>();
         this.context = context;
-        this.onDeleteButtonClickListener = listener;
+        this.onCategoryClickListener = listener;
         this.layoutInflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -41,6 +42,7 @@ public class CategoriesAdapter extends
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = layoutInflater.inflate(R.layout.layout_category_item, parent, false);
+
         return new ViewHolder(itemView);
     }
 
@@ -72,7 +74,6 @@ public class CategoriesAdapter extends
     class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageView;
         private TextView tvTitle, tvContent;
-        private Button btnDelete;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -80,18 +81,23 @@ public class CategoriesAdapter extends
             imageView = itemView.findViewById(R.id.imageView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvContent = itemView.findViewById(R.id.tvContent);
-            btnDelete = itemView.findViewById(R.id.btnDelete);
         }
 
         void bind(final Category category) {
             if (category != null) {
-                imageView.setImageBitmap();
+
+                String imageName = category.getImageName();
+                int resID = HandbookLiveDataRoom.setImageInImageView(imageView, imageName);
+                imageView.setImageResource(resID);
+
                 tvTitle.setText(category.getTitle());
                 tvContent.setText(category.getContent());
-                btnDelete.setOnClickListener(v -> {
-                    if (onDeleteButtonClickListener != null)
-                        onDeleteButtonClickListener.onDeleteButtonClickListener(category);
+
+                itemView.setOnClickListener(view -> {
+                    if (onCategoryClickListener != null)
+                        onCategoryClickListener.onCategoryClickListener(category.getTitle());
                 });
+
             }
         }
     }
@@ -117,7 +123,8 @@ public class CategoriesAdapter extends
 
         @Override
         public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldCategories.get(oldItemPosition).getId() == newCategories.get(newItemPosition).getId();
+            // return oldCategories.get(oldItemPosition).getId() == newCategories.get(newItemPosition).getId();
+            return oldCategories.get(oldItemPosition).getTitle() == newCategories.get(newItemPosition).getTitle();
         }
 
         @Override
@@ -125,4 +132,5 @@ public class CategoriesAdapter extends
             return oldCategories.get(oldItemPosition).equals(newCategories.get(newItemPosition));
         }
     }
+
 }

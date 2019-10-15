@@ -1,17 +1,18 @@
 package app.pavel.handbooklivedataroom.utils;
 
-import android.content.res.Resources;
 import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 
 import app.pavel.handbooklivedataroom.R;
 import app.pavel.handbooklivedataroom.data.Category;
+import app.pavel.handbooklivedataroom.data.CategoryInfo;
 import app.pavel.handbooklivedataroom.data.Database;
+import app.pavel.handbooklivedataroom.data.Launch;
 
 public class DatabaseFilling {
 
-    private static final String TAG = DatabaseFilling.class.getName();
+    // private static final String TAG = DatabaseFilling.class.getName();
 
     public static void fillingAsync(@NonNull final Database database) {
         FillingDatabaseAsync task = new FillingDatabaseAsync(database);
@@ -27,13 +28,40 @@ public class DatabaseFilling {
         return category;
     }
 
+    private static CategoryInfo addCategoryInfo(final Database database, CategoryInfo categoryInfo) {
+        database.categoryInfoDao().save(categoryInfo);
+        return categoryInfo;
+    }
+
+    private static Launch addLaunchItem(final Database database, Launch launch) {
+        database.launchDao().save(launch);
+        return launch;
+    }
+
     // filling database when app setting up in the first time
     private static void fillingWithData(Database database) {
 
-        Resources resources = Resources.getSystem();
-        String[] CATEGORIES = resources.getStringArray(R.array.categories);
-        String[] CATEGORIES_SHORT_DESC = resources.getStringArray(R.array.categories_short_desc);
-        String[] CATEGORIES_IMAGE_NAMES = resources.getStringArray(R.array.categories_image_names);
+        String[] LAUNCH_TITLE = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.launch_title);
+        String[] LAUNCH_SHORT_DESC = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.launch_short_desc);
+        String[] LAUNCH_IMAGE_NAME = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.launch_imageName);
+
+        for (int i = 0; i < LAUNCH_TITLE.length; i++) {
+            Launch launch = new Launch();
+            launch.setTitle(LAUNCH_TITLE[i]);
+            launch.setDescription(LAUNCH_SHORT_DESC[i]);
+            launch.setImageName(LAUNCH_IMAGE_NAME[i]);
+            addLaunchItem(database, launch);
+        }
+
+        String[] CATEGORIES = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.categories);
+        String[] CATEGORIES_SHORT_DESC = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.categories_short_desc);
+        String[] CATEGORIES_IMAGE_NAMES = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.categories_image_names);
 
         for (int i = 0; i < CATEGORIES.length; i++) {
             Category category = new Category();
@@ -41,6 +69,21 @@ public class DatabaseFilling {
             category.setContent(CATEGORIES_SHORT_DESC[0]);
             category.setImageName(CATEGORIES_IMAGE_NAMES[i]);
             addCategory(database, category);
+        }
+
+        String[] CATEGORY_ID = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.category_id);
+        String[] CATEGORY_IMAGE_NAME = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.imageName);
+        String[] CATEGORY_PARAGRAPH = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.paragraph);
+
+        for (int i = 0; i < CATEGORY_ID.length - 1 ; i++) {
+            CategoryInfo categoryInfo = new CategoryInfo();
+            categoryInfo.setCategoryId(CATEGORY_ID[i]);
+            categoryInfo.setImageName(CATEGORY_IMAGE_NAME[i]);
+            categoryInfo.setParagraph(CATEGORY_PARAGRAPH[i]);
+            addCategoryInfo(database, categoryInfo);
         }
     }
 
