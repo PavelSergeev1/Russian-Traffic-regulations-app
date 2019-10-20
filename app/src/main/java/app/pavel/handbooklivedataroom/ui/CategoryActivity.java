@@ -2,7 +2,6 @@ package app.pavel.handbooklivedataroom.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,8 +16,6 @@ import app.pavel.handbooklivedataroom.data.CategoryInfo;
 import app.pavel.handbooklivedataroom.utils.HandbookLiveDataRoom;
 
 public class CategoryActivity extends AppCompatActivity {
-
-    // String textJustification = "<html><body><p align=\"justify\">";
 
     LinearLayout linearLayout;
 
@@ -50,6 +47,7 @@ public class CategoryActivity extends AppCompatActivity {
     void fillParagraph(final CategoryInfo categoryInfo) {
 
         String TAB = "\t";
+        String EN_DASH = "–";
 
         if (categoryInfo.getImageName() != null && !categoryInfo.getImageName().equals("no") ) {
 
@@ -58,19 +56,29 @@ public class CategoryActivity extends AppCompatActivity {
             int resID = HandbookLiveDataRoom.setImageInImageView(imageView, imageName);
             imageView.setImageResource(resID);
 
-            if (imageView != null)
-                linearLayout.addView(imageView);
+            linearLayout.addView(imageView);
         }
 
         if (categoryInfo.getParagraph() != null) {
 
             TextView textView = new TextView(this);
             StringBuilder text = new StringBuilder();
-            // text.append(textJustification)
-            text.append(TAB)
-                    .append(categoryInfo.getParagraph()).append("\n");
+
+            char[] listItem;
+            listItem = categoryInfo.getParagraph().substring(0, 1).toCharArray();
+
+            if (!Character.isDigit(listItem[0])){
+                text.append(TAB);
+            }
+
+            if (Character.isLowerCase(listItem[0])) {
+                text.append(TAB).append(TAB).append(EN_DASH).append(TAB);
+            }
+
+            text.append(categoryInfo.getParagraph());
+            text.append("\n");
             textView.setText(text);
-            textView.setTextAppearance(this, android.R.style.TextAppearance_Small);
+
             linearLayout.addView(textView);
         }
 

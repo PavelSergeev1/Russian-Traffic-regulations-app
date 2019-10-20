@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:scrollbars="none"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         android:layout_alignParentTop="true"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -30,6 +29,9 @@
             android:id="@+id/linearLayoutView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_margin"
+            android:layout_marginEnd="@dimen/text_margin"
+            android:layout_marginBottom="@dimen/text_margin_top_bottom"
             android:orientation="vertical">
 
             <TextView
@@ -46,11 +48,7 @@
                 style="@style/AppTheme"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/text_margin"
                 android:layout_marginTop="@dimen/text_margin_top_bottom"
-                android:layout_marginEnd="@dimen/text_margin"
-                android:layout_marginBottom="@dimen/text_margin_top_bottom"
-                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
             </LinearLayout>

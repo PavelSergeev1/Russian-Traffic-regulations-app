@@ -80,7 +80,7 @@ public class CategoriesAdapter extends
 
             imageView = itemView.findViewById(R.id.imageView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvContent = itemView.findViewById(R.id.tvContent);
+            // tvContent = itemView.findViewById(R.id.tvContent);
         }
 
         void bind(final Category category) {
@@ -91,7 +91,7 @@ public class CategoriesAdapter extends
                 imageView.setImageResource(resID);
 
                 tvTitle.setText(category.getTitle());
-                tvContent.setText(category.getContent());
+                // tvContent.setText(category.getContent());
 
                 itemView.setOnClickListener(view -> {
                     if (onCategoryClickListener != null)
@@ -124,7 +124,8 @@ public class CategoriesAdapter extends
         @Override
         public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
             // return oldCategories.get(oldItemPosition).getId() == newCategories.get(newItemPosition).getId();
-            return oldCategories.get(oldItemPosition).getTitle() == newCategories.get(newItemPosition).getTitle();
+            return oldCategories.get(oldItemPosition).getTitle()
+                    .equals(newCategories.get(newItemPosition).getTitle());
         }
 
         @Override

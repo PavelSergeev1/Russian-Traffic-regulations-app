@@ -58,15 +58,14 @@ public class DatabaseFilling {
 
         String[] CATEGORIES = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
                 .getStringArray(R.array.categories);
-        String[] CATEGORIES_SHORT_DESC = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
-                .getStringArray(R.array.categories_short_desc);
+        // String[] CATEGORIES_SHORT_DESC = HandbookLiveDataRoom.getHandbookLiveDataRoomResources().getStringArray(R.array.categories_short_desc);
         String[] CATEGORIES_IMAGE_NAMES = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
                 .getStringArray(R.array.categories_image_names);
 
         for (int i = 0; i < CATEGORIES.length; i++) {
             Category category = new Category();
             category.setTitle(CATEGORIES[i]);
-            category.setContent(CATEGORIES_SHORT_DESC[0]);
+            // category.setContent(CATEGORIES_SHORT_DESC[0]);
             category.setImageName(CATEGORIES_IMAGE_NAMES[i]);
             addCategory(database, category);
         }
