@@ -1,0 +1,23 @@
+<vector android:autoMirrored="true" android:height="1050dp"
+    android:viewportHeight="1050" android:viewportWidth="700"
+    android:width="700dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillAlpha="1" android:fillColor="#ffffff"
+        android:fillType="nonZero"
+        android:pathData="M45,0L655,0A45,45 0,0 1,700 45L700,1005A45,45 0,0 1,655 1050L45,1050A45,45 0,0 1,0 1005L0,45A45,45 0,0 1,45 0z"
+        android:strokeColor="#00000000" android:strokeWidth="3.54299997999999980"/>
+    <path android:fillAlpha="1" android:fillColor="#0d69e1"
+        android:fillType="nonZero"
+        android:pathData="m45,20c-13.85,0 -25,11.15 -25,25l0,960c0,13.85 11.15,25 25,25l610,0c13.85,0 25,-11.15 25,-25l0,-960c0,-13.85 -11.15,-25 -25,-25l-610,0zM110.63,175 L589.38,175c24.93,0 45,20.07 45,45l0,478.75c0,24.93 -20.07,45 -45,45l-478.75,0c-24.93,0 -45,-20.07 -45,-45l0,-478.75c0,-24.93 20.07,-45 45,-45z"
+        android:strokeColor="#00000000" android:strokeWidth="3.54299997999999980"/>
+    <path android:fillColor="#00000000"
+        android:pathData="M45,1L655,1A44,44 0,0 1,699 45L699,1005A44,44 0,0 1,655 1049L45,1049A44,44 0,0 1,1 1005L1,45A44,44 0,0 1,45 1z"
+        android:strokeAlpha="1" android:strokeColor="#000000" android:strokeWidth="1.99999988000000010"/>
+    <path android:fillAlpha="1" android:fillColor="#000000"
+        android:fillType="nonZero"
+        android:pathData="m251.56,306.25c0,6.04 -4.9,10.94 -10.94,10.94 -6.04,0 -10.94,-4.9 -10.94,-10.94l0,0 0,-87.5 -21.88,0 0,131.25c0,22.42 13.5,41.67 32.81,50.11l0,278.02 0,0c0,12.08 9.79,21.87 21.88,21.87 12.08,0 21.88,-9.79 21.88,-21.87l0,-278.02c19.31,-8.44 32.81,-27.68 32.81,-50.11l0,-131.25 -21.88,0 0,87.5c0,6.04 -4.9,10.94 -10.94,10.94 -6.04,0 -10.94,-4.9 -10.94,-10.94l0,0 0,-87.5 -21.88,0z"
+        android:strokeColor="#00000000" android:strokeWidth="1"/>
+    <path android:fillAlpha="1" android:fillColor="#000000"
+        android:fillType="nonZero"
+        android:pathData="m437.5,503.13c-24.16,0 -43.75,-19.59 -43.75,-43.75l0,0 0,-196.88c0,-24.16 19.59,-43.75 43.75,-43.75 24.16,0 43.75,19.59 43.75,43.75l-0,415.63c0,12.08 -9.79,21.87 -21.88,21.87 -12.08,0 -21.88,-9.79 -21.88,-21.87l0,0z"
+        android:strokeColor="#00000000" android:strokeWidth="0.63805968000000002"/>
+</vector>
