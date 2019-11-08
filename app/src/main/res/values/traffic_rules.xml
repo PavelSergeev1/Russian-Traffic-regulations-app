@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-->Second table "trafficRules"<-->
+
+    <string-array name="traffic_rules">
+
+        <item>1. Общие положения</item>
+        <item>2. Общие обязанности водителей</item>
+        <item>3. Применение специальных сигналов</item>
+        <item>4. Обязанности пешеходов</item>
+        <item>5. Обязанности пассажиров</item>
+        <item>6. Сигналы светофора и регулировщика</item>
+        <item>7. Применение аварийной сигнализации и знака аварийной остановки</item>
+        <item>8. Начало движения, маневрирование</item>
+        <item>9. Расположение транспортных средств на проезжей части</item>
+        <item>10. Скорость движения</item>
+        <item>11. Обгон, опережение, встречный разъезд</item>
+        <item>12. Остановка и стоянка</item>
+        <item>13. Проезд перекрестков</item>
+        <item>14. Пешеходные переходы и места остановок маршрутных транспортных средств</item>
+        <item>15. Движение через железнодорожные пути</item>
+        <item>16. Движение по автомагистралям</item>
+        <item>17. Движение в жилых зонах</item>
+        <item>18. Приоритет маршрутных транспортных средств</item>
+        <item>19. Пользование внешними световыми приборами и звуковыми сигналами</item>
+        <item>20. Буксировка механических транспортных средств</item>
+        <item>21. Учебная езда</item>
+        <item>22. Перевозка людей</item>
+        <item>23. Перевозка грузов</item>
+        <item>24. Дополнительные требования к движению велосипедистов и водителей мопедов</item>
+        <item>25. Дополнительные требования к движению гужевых повозок, а также к прогону животных</item>
+
+    </string-array>
+
+    <string-array name="traffic_rules_image_names">
+
+        <item>ic_1_8</item>
+        <item>ic_3_24</item>
+        <item>ic_2_4</item>
+        <item>ic_5_19_2</item>
+        <item>ic_3_10</item>
+        <item>ic_1_6</item>
+        <item>ic_1_32</item>
+        <item>ic_5_15_2_b</item>
+        <item>ic_5_15_4_b</item>
+        <item>ic_4_6</item>
+        <item>ic_3_20</item>
+        <item>ic_3_27</item>
+        <item>ic_2_3_1</item>
+        <item>ic_6_6</item>
+        <item>ic_1_2</item>
+        <item>ic_5_1</item>
+        <item>ic_5_21</item>
+        <item>ic_5_14</item>
+        <item>ic_3_26</item>
+        <item>ic_3_7</item>
+        <item>ic_1_27</item>
+        <item>ic_5_13_2</item>
+        <item>ic_3_32</item>
+        <item>ic_4_4_1</item>
+        <item>ic_1_26</item>
+
+    </string-array>
+
+</resources>

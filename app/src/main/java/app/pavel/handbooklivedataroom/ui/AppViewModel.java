@@ -10,27 +10,41 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import app.pavel.handbooklivedataroom.data.Category;
-import app.pavel.handbooklivedataroom.data.CategoryDao;
-import app.pavel.handbooklivedataroom.data.CategoryInfo;
-import app.pavel.handbooklivedataroom.data.CategoryInfoDao;
+import app.pavel.handbooklivedataroom.data.RoadMarking;
+import app.pavel.handbooklivedataroom.data.RoadMarkingDao;
+import app.pavel.handbooklivedataroom.data.TrafficRuleInfo;
+import app.pavel.handbooklivedataroom.data.TrafficRules;
+import app.pavel.handbooklivedataroom.data.TrafficRulesDao;
+import app.pavel.handbooklivedataroom.data.TrafficRuleInfoDao;
 import app.pavel.handbooklivedataroom.data.Database;
 import app.pavel.handbooklivedataroom.data.Launch;
 import app.pavel.handbooklivedataroom.data.LaunchDao;
+import app.pavel.handbooklivedataroom.data.TrafficSigns;
+import app.pavel.handbooklivedataroom.data.TrafficSignsDao;
+import app.pavel.handbooklivedataroom.data.TrafficSignsInfo;
+import app.pavel.handbooklivedataroom.data.TrafficSignsInfoDao;
 
 public class AppViewModel extends AndroidViewModel {
 
     private LaunchDao launchDao;
-    private CategoryDao categoryDao;
-    private CategoryInfoDao categoryInfoDao;
+    private TrafficRulesDao trafficRulesDao;
+    private TrafficRuleInfoDao trafficRuleInfoDao;
+    private TrafficSignsDao trafficSignsDao;
+    private TrafficSignsInfoDao trafficSignsInfoDao;
+    private RoadMarkingDao roadMarkingDao;
+
     private ExecutorService executorService;
 
     public AppViewModel(@NonNull Application application) {
         super(application);
 
         launchDao = Database.getInstance(application).launchDao();
-        categoryDao = Database.getInstance(application).categoryDao();
-        categoryInfoDao = Database.getInstance(application).categoryInfoDao();
+        trafficRulesDao = Database.getInstance(application).trafficRulesDao();
+        trafficRuleInfoDao = Database.getInstance(application).trafficRuleInfoDao();
+        trafficSignsDao = Database.getInstance(application).trafficSignsDao();
+        trafficSignsInfoDao = Database.getInstance(application).trafficSignsInfoDao();
+        roadMarkingDao = Database.getInstance(application).roadMarkingDao();
+
         executorService = Executors.newSingleThreadExecutor();
     }
 
@@ -38,23 +52,24 @@ public class AppViewModel extends AndroidViewModel {
         return launchDao.findAll();
     }
 
-    LiveData<List<Category>> getAllCategories() {
-        return categoryDao.findAll();
+    LiveData<List<TrafficRules>> getAllTrafficRules() {
+        return trafficRulesDao.findAll();
     }
 
-    void saveCategory(Category category) {
-        executorService.execute(() -> categoryDao.save(category));
+    LiveData<List<TrafficRuleInfo>> getTrafficRuleInfo(String ruleTitle) {
+        return trafficRuleInfoDao.findTrafficRuleInfo(ruleTitle);
     }
 
-    /**
-
-    void deleteCategory(Category category) {
-        executorService.execute(() -> categoryDao.delete(category));
+    LiveData<List<TrafficSigns>> getAllTrafficSigns() {
+        return trafficSignsDao.findAll();
     }
 
-     */
-
-    LiveData<List<CategoryInfo>> getCategoryInfo(String categotyTitle) {
-        return categoryInfoDao.findCategoryInfo(categotyTitle);
+    LiveData<List<TrafficSignsInfo>> getTrafficSignsInfo(String signTitle) {
+        return trafficSignsInfoDao.findTrafficSignsInfo(signTitle);
     }
+
+    LiveData<List<RoadMarking>> getAllRoadMarking() {
+        return roadMarkingDao.findAll();
+    }
+
 }

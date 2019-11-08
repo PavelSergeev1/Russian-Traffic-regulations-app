@@ -1,6 +1,7 @@
 package app.pavel.handbooklivedataroom.ui;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +26,14 @@ public class LaunchAdapter extends
         void onItemClickListener(String itemTitle);
     }
 
+    private String imageName;
+
     private List<Launch> data;
     private Context context;
     private LayoutInflater layoutInflater;
     private OnLaunchItemClickListener onLaunchItemClickListener;
 
-    public LaunchAdapter(Context context, OnLaunchItemClickListener listener) {
+    LaunchAdapter(Context context, OnLaunchItemClickListener listener) {
         this.data = new ArrayList<>();
         this.context = context;
         this.onLaunchItemClickListener = listener;
@@ -41,7 +44,7 @@ public class LaunchAdapter extends
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = layoutInflater.inflate(R.layout.layout_launch_item, parent, false);
+        View itemView = layoutInflater.inflate(R.layout.launch_list_item, parent, false);
 
         return new ViewHolder(itemView);
     }
@@ -71,9 +74,15 @@ public class LaunchAdapter extends
         void bind(final Launch launch) {
             if (launch != null) {
 
-                String imageName = launch.getImageName();
-                int resID = HandbookLiveDataRoom.setImageInImageView(imageView, imageName);
+                imageName = launch.getImageName();
+
+                int resID = HandbookLiveDataRoom.getContext().getResources()
+                        .getIdentifier( imageName, "drawable",
+                                HandbookLiveDataRoom.getThisPackageName());
+
                 imageView.setImageResource(resID);
+
+                //new SetImageInImageView().execute(imageView);
 
                 textViewTitle.setText(launch.getTitle());
                 textViewDescription.setText(launch.getDescription());
@@ -87,7 +96,7 @@ public class LaunchAdapter extends
         }
     }
 
-    public void setLaunchData(List<Launch> newData) {
+    void setLaunchData(List<Launch> newData) {
         if (data != null) {
             LaunchDiffCallback launchDiffCallback = new LaunchDiffCallback(data, newData);
             DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(launchDiffCallback);
@@ -106,7 +115,7 @@ public class LaunchAdapter extends
 
         private final List<Launch> oldCategories, newCategories;
 
-        public LaunchDiffCallback(List<Launch> oldCategories, List<Launch> newCategories) {
+        LaunchDiffCallback(List<Launch> oldCategories, List<Launch> newCategories) {
             this.oldCategories = oldCategories;
             this.newCategories = newCategories;
         }
@@ -123,13 +132,37 @@ public class LaunchAdapter extends
 
         @Override
         public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-            // return oldCategories.get(oldItemPosition).getId() == newCategories.get(newItemPosition).getId();
-            return oldCategories.get(oldItemPosition).getTitle() == newCategories.get(newItemPosition).getTitle();
+
+            return oldCategories.get(oldItemPosition).getTitle()
+                    .equals(newCategories.get(newItemPosition).getTitle());
         }
 
         @Override
         public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldCategories.get(oldItemPosition).equals(newCategories.get(newItemPosition));
+
+            return oldCategories.get(oldItemPosition)
+                    .equals(newCategories.get(newItemPosition));
         }
     }
+
+    public class SetImageInImageView extends AsyncTask<ImageView, Void, Integer> {
+        ImageView imageView = null;
+        @Override
+        protected Integer doInBackground(ImageView... imageViews) {
+            this.imageView = imageViews[0];
+
+            return getImageFromResource(imageName);
+        }
+
+        @Override
+        protected void onPostExecute(Integer resID) {
+
+            imageView.setImageResource(resID);
+        }
+
+        private int getImageFromResource(String imageName) {
+            return HandbookLiveDataRoom.getResourceId(imageName);
+        }
+    }
+
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="road_marking_title">
+        <item>1. Горизонтальная разметка</item>
+        <item>2. Вертикальная разметка</item>
+    </string-array>
+
+    <string-array name="road_marking_image_name">
+        <item>ic_rm_1_1</item>
+        <item>ic_rm_2_1_1</item>
+    </string-array>
+
+</resources>

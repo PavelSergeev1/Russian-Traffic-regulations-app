@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--> Table trafficSigns <-->
+
+    <string-array name="traffic_signs">
+
+        <item>1. Предупреждающие знаки</item>
+        <item>2. Знаки приоритета</item>
+        <item>3. Запрещающие знаки</item>
+        <item>4. Предписывающие знаки</item>
+        <item>5. Знаки особых предписаний</item>
+        <item>6. Информационные знаки</item>
+        <item>7. Знаки сервиса</item>
+        <item>8. Знаки дополнительной информации (таблички)</item>
+
+    </string-array>
+
+    <string-array name="traffic_signs_image_names">
+
+        <item>ic_1_1</item>
+        <item>ic_2_1</item>
+        <item>ic_3_1</item>
+        <item>ic_4_1_1</item>
+        <item>ic_5_1</item>
+        <item>ic_6_1</item>
+        <item>ic_7_1</item>
+        <item>ic_8_1_1</item>
+
+    </string-array>
+
+</resources>

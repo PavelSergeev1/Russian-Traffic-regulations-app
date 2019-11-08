@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -26,6 +27,8 @@ public class LaunchActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.launch_activity);
+
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         preferences = getSharedPreferences("app.pavel.handbooklivedataroom", MODE_PRIVATE);
 
@@ -58,10 +61,23 @@ public class LaunchActivity extends AppCompatActivity
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+    }
+
+    @Override
     public void onItemClickListener(String itemTitle) {
-        // start MainActivity
         if (itemTitle.equals("Правила дорожного движения РФ")) {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, TrafficRulesActivity.class);
+            startActivity(intent);
+        }
+        else if (itemTitle.equals("Дорожные знаки")) {
+            Intent intent = new Intent(this, TrafficSignsActivity.class);
+            startActivity(intent);
+        }
+        else if (itemTitle.equals("Дорожная разметка и ее характеристики")) {
+            Intent intent = new Intent(this, RoadMarkingActivity.class);
             startActivity(intent);
         }
     }
