@@ -11,20 +11,20 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface TrafficRuleInfoDao {
+public interface MainProvisionsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void saveAll(List<TrafficRuleInfo> trafficRuleInfo);
+    void saveAll(List<MainProvisions> mainProvisions);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void save(TrafficRuleInfo trafficRuleInfo);
+    void save(MainProvisions mainProvisions);
 
     @Update
-    void update(TrafficRuleInfo trafficRuleInfo);
+    void update(MainProvisions mainProvisions);
 
     @Delete
-    void delete(TrafficRuleInfo trafficRuleInfo);
+    void delete(MainProvisions mainProvisions);
 
-    @Query("SELECT * FROM trafficRuleInfo " +
-            "WHERE category_id LIKE :ruleTitle")
-    LiveData<List<TrafficRuleInfo>> findTrafficRuleInfo(String ruleTitle);
+    @Query("SELECT * FROM main_provisions " +
+            "WHERE category_id LIKE :mainProvisionsTitle")
+    LiveData<List<MainProvisions>> findMainProvisions(String mainProvisionsTitle);
 }

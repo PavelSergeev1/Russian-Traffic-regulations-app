@@ -20,13 +20,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.SelectedRuleActivity" android:theme="@style/noAnimTheme"/>
-
         <activity android:name=".ui.TrafficRulesActivity" android:theme="@style/noAnimTheme"/>
 
         <activity android:name=".ui.TrafficSignsActivity" android:theme="@style/noAnimTheme"/>
 
-        <activity android:name=".ui.SelectedSignActivity" android:theme="@style/noAnimTheme"/>
+        <activity android:name=".ui.SelectedPageActivity" android:theme="@style/noAnimTheme"/>
 
         <activity android:name=".ui.RoadMarkingActivity" android:theme="@style/noAnimTheme"/>
     </application>

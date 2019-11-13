@@ -52,11 +52,11 @@ public class LaunchActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
 
-        if (preferences.getBoolean("firstrun", true)) {
+        if (preferences.getBoolean("first_run", true)) {
 
             DatabaseFilling.fillingAsync(Database.getInstance(this));
 
-            preferences.edit().putBoolean("firstrun", false).apply();
+            preferences.edit().putBoolean("first_run", false).apply();
         }
     }
 
@@ -71,15 +71,20 @@ public class LaunchActivity extends AppCompatActivity
         if (itemTitle.equals("Правила дорожного движения РФ")) {
             Intent intent = new Intent(this, TrafficRulesActivity.class);
             startActivity(intent);
-        }
-        else if (itemTitle.equals("Дорожные знаки")) {
+        } else if (itemTitle.equals("Дорожные знаки")) {
             Intent intent = new Intent(this, TrafficSignsActivity.class);
             startActivity(intent);
-        }
-        else if (itemTitle.equals("Дорожная разметка и ее характеристики")) {
+        } else if (itemTitle.equals("Дорожная разметка и ее характеристики")) {
             Intent intent = new Intent(this, RoadMarkingActivity.class);
             startActivity(intent);
+        } else if (itemTitle.equals("")) {
+            // start SelectedPageActivity
+            Intent intent = new Intent(this, SelectedPageActivity.class);
+            intent.putExtra("Title", "Основные положения");
+            intent.putExtra("parentActivity", "MainProvisionsActivity");
+            startActivity(intent);
         }
+
     }
 
 }

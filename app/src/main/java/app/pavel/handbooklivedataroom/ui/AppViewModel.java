@@ -10,8 +10,12 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import app.pavel.handbooklivedataroom.data.MainProvisions;
+import app.pavel.handbooklivedataroom.data.MainProvisionsDao;
 import app.pavel.handbooklivedataroom.data.RoadMarking;
 import app.pavel.handbooklivedataroom.data.RoadMarkingDao;
+import app.pavel.handbooklivedataroom.data.RoadMarkingInfo;
+import app.pavel.handbooklivedataroom.data.RoadMarkingInfoDao;
 import app.pavel.handbooklivedataroom.data.TrafficRuleInfo;
 import app.pavel.handbooklivedataroom.data.TrafficRules;
 import app.pavel.handbooklivedataroom.data.TrafficRulesDao;
@@ -32,6 +36,8 @@ public class AppViewModel extends AndroidViewModel {
     private TrafficSignsDao trafficSignsDao;
     private TrafficSignsInfoDao trafficSignsInfoDao;
     private RoadMarkingDao roadMarkingDao;
+    private RoadMarkingInfoDao roadMarkingInfoDao;
+    private MainProvisionsDao mainProvisionsDao;
 
     private ExecutorService executorService;
 
@@ -44,6 +50,8 @@ public class AppViewModel extends AndroidViewModel {
         trafficSignsDao = Database.getInstance(application).trafficSignsDao();
         trafficSignsInfoDao = Database.getInstance(application).trafficSignsInfoDao();
         roadMarkingDao = Database.getInstance(application).roadMarkingDao();
+        roadMarkingInfoDao = Database.getInstance(application).roadMarkingInfoDao();
+        mainProvisionsDao = Database.getInstance(application).mainProvisionsDao();
 
         executorService = Executors.newSingleThreadExecutor();
     }
@@ -70,6 +78,14 @@ public class AppViewModel extends AndroidViewModel {
 
     LiveData<List<RoadMarking>> getAllRoadMarking() {
         return roadMarkingDao.findAll();
+    }
+
+    LiveData<List<RoadMarkingInfo>> getRoadMarking(String roadMarking) {
+        return roadMarkingInfoDao.findRoadMarkingInfo(roadMarking);
+    }
+
+    LiveData<List<MainProvisions>> getMainProvisions(String mainProvisions) {
+        return mainProvisionsDao.findMainProvisions(mainProvisions);
     }
 
 }

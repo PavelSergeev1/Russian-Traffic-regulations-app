@@ -1,7 +1,6 @@
 package app.pavel.handbooklivedataroom.ui;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,10 +81,10 @@ public class LaunchAdapter extends
 
                 imageView.setImageResource(resID);
 
-                //new SetImageInImageView().execute(imageView);
-
                 textViewTitle.setText(launch.getTitle());
-                textViewDescription.setText(launch.getDescription());
+                if (!launch.getDescription().equals("no")) {
+                    textViewDescription.setText(launch.getDescription());
+                }
 
                 itemView.setOnClickListener(view -> {
                     if (onLaunchItemClickListener != null)
@@ -142,26 +141,6 @@ public class LaunchAdapter extends
 
             return oldCategories.get(oldItemPosition)
                     .equals(newCategories.get(newItemPosition));
-        }
-    }
-
-    public class SetImageInImageView extends AsyncTask<ImageView, Void, Integer> {
-        ImageView imageView = null;
-        @Override
-        protected Integer doInBackground(ImageView... imageViews) {
-            this.imageView = imageViews[0];
-
-            return getImageFromResource(imageName);
-        }
-
-        @Override
-        protected void onPostExecute(Integer resID) {
-
-            imageView.setImageResource(resID);
-        }
-
-        private int getImageFromResource(String imageName) {
-            return HandbookLiveDataRoom.getResourceId(imageName);
         }
     }
 

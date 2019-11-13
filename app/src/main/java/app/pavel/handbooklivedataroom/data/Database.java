@@ -6,7 +6,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 @androidx.room.Database(entities = {Launch.class, TrafficRules.class, TrafficRuleInfo.class,
-    TrafficSigns.class, TrafficSignsInfo.class, RoadMarking.class},
+    TrafficSigns.class, TrafficSignsInfo.class, RoadMarking.class, RoadMarkingInfo.class,
+    MainProvisions.class},
         version = 1, exportSchema = false)
 public abstract class Database extends RoomDatabase {
 
@@ -18,6 +19,8 @@ public abstract class Database extends RoomDatabase {
     public abstract TrafficSignsDao trafficSignsDao();
     public abstract TrafficSignsInfoDao trafficSignsInfoDao();
     public abstract RoadMarkingDao roadMarkingDao();
+    public abstract RoadMarkingInfoDao roadMarkingInfoDao();
+    public abstract MainProvisionsDao mainProvisionsDao();
 
     private static final Object sLock = new Object();
 

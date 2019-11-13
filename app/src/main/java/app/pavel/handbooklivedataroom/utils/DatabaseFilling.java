@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import app.pavel.handbooklivedataroom.R;
 import app.pavel.handbooklivedataroom.data.RoadMarking;
+import app.pavel.handbooklivedataroom.data.RoadMarkingInfo;
 import app.pavel.handbooklivedataroom.data.TrafficRuleInfo;
 import app.pavel.handbooklivedataroom.data.TrafficRules;
 import app.pavel.handbooklivedataroom.data.Database;
@@ -47,6 +48,10 @@ public class DatabaseFilling {
 
     private static void addRoadMarkingItem(final Database database, RoadMarking roadMarking) {
         database.roadMarkingDao().save(roadMarking);
+    }
+
+    private static void addRoadMarkingInfo(final Database database, RoadMarkingInfo roadMarkingInfo) {
+        database.roadMarkingInfoDao().save(roadMarkingInfo);
     }
 
     // filling database when app setting up in the first time
@@ -131,6 +136,21 @@ public class DatabaseFilling {
             roadMarking.setTitle(ROAD_MARKING_TITLE[i]);
             roadMarking.setImageName(ROAD_MARKING_IMAGE_NAME[i]);
             addRoadMarkingItem(database, roadMarking);
+        }
+
+        String[] RM_ID = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.rm_id);
+        String[] RM_IMAGE_NAME = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.rm_image_name);
+        String[] RM_PARAGRAPH = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.rm_paragraph);
+
+        for (int i = 0; i < RM_ID.length; i++) {
+            RoadMarkingInfo roadMarkingInfo = new RoadMarkingInfo();
+            roadMarkingInfo.setCategoryId(RM_ID[i]);
+            roadMarkingInfo.setImageName(RM_IMAGE_NAME[i]);
+            roadMarkingInfo.setParagraph(RM_PARAGRAPH[i]);
+            addRoadMarkingInfo(database, roadMarkingInfo);
         }
     }
 

@@ -3,19 +3,11 @@ package app.pavel.handbooklivedataroom.data;
 import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.Ignore;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(foreignKeys = @ForeignKey(entity = RoadMarking.class,
-        parentColumns = "title",
-        childColumns = "category_id",
-        onUpdate = ForeignKey.CASCADE,
-        onDelete = ForeignKey.CASCADE),
-        tableName = "road_marking_info",
-        indices = {@Index(value = {"category_id"} ) } )
-public class RoadMarkingInfo {
+@Entity(tableName = "main_provisions")
+public class MainProvisions {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;
@@ -31,10 +23,10 @@ public class RoadMarkingInfo {
     @Nullable
     private String paragraph;
 
-    public RoadMarkingInfo() { }
+    public MainProvisions() { }
 
     @Ignore
-    public RoadMarkingInfo(String categoryId,
+    public MainProvisions(String categoryId,
                            @org.jetbrains.annotations.Nullable String imageName,
                            @org.jetbrains.annotations.Nullable String paragraph) {
         this.categoryId = categoryId;
@@ -75,5 +67,4 @@ public class RoadMarkingInfo {
     public void setParagraph(@Nullable String paragraph) {
         this.paragraph = paragraph;
     }
-
 }

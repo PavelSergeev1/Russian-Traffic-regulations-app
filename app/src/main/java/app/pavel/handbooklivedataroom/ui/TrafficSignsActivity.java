@@ -37,9 +37,10 @@ public class TrafficSignsActivity extends AppCompatActivity
 
     @Override
     public void onSignClickListener(String trafficSignTitle) {
-        // start SelectedSignActivity
-        Intent intent = new Intent(this, SelectedSignActivity.class);
+        // start SelectedPageActivity
+        Intent intent = new Intent(this, SelectedPageActivity.class);
         intent.putExtra("Title", trafficSignTitle);
+        intent.putExtra("parentActivity", "TrafficSignsActivity");
         startActivity(intent);
     }
 }

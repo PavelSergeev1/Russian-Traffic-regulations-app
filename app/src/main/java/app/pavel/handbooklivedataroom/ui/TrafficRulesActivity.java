@@ -1,8 +1,6 @@
 package app.pavel.handbooklivedataroom.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -75,23 +73,11 @@ public class TrafficRulesActivity extends AppCompatActivity
     @Override
     public void onRuleClickListener(String trafficRuleTitle) {
         // start SelectedRuleActivity
-        Intent intent = new Intent(this, SelectedRuleActivity.class);
+        Intent intent = new Intent(this, SelectedPageActivity.class);
         intent.putExtra("Title", trafficRuleTitle);
+        intent.putExtra("parentActivity", "TrafficRulesActivity");
         startActivity(intent);
 
     }
 
-    /*
-
-    @Override
-    public void onDeleteButtonClickListener(TrafficRules category) {
-        appViewModel.deleteCategory(category);
-    }
-
-    */
-
-    // WARNING
-    // Schema export directory is not provided to the annotation processor so we cannot export
-    // the schema. You can either provide `room.schemaLocation` annotation processor argument
-    // OR set exportSchema to false.
 }

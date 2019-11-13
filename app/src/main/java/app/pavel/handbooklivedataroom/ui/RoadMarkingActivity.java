@@ -37,9 +37,10 @@ public class RoadMarkingActivity extends AppCompatActivity
 
     @Override
     public void onRoadMarkingClickListener(String trafficSignTitle) {
-        // start SelectedSignActivity
-        Intent intent = new Intent(this, SelectedSignActivity.class);
+        // start SelectedPageActivity
+        Intent intent = new Intent(this, SelectedPageActivity.class);
         intent.putExtra("Title", trafficSignTitle);
+        intent.putExtra("parentActivity", "RoadMarkingActivity");
         startActivity(intent);
     }
 }
