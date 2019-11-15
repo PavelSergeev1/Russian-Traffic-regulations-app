@@ -1,23 +1,23 @@
 package app.pavel.handbooklivedataroom.ui;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 
 import java.util.List;
+import java.util.Objects;
 
 import app.pavel.handbooklivedataroom.R;
+import app.pavel.handbooklivedataroom.data.ListOfMalfunctions;
+import app.pavel.handbooklivedataroom.data.MainProvisions;
 import app.pavel.handbooklivedataroom.data.RoadMarkingInfo;
 import app.pavel.handbooklivedataroom.data.TrafficRuleInfo;
 import app.pavel.handbooklivedataroom.data.TrafficSignsInfo;
@@ -26,22 +26,32 @@ import app.pavel.handbooklivedataroom.utils.HandbookLiveDataRoom;
 public class SelectedPageActivity extends AppCompatActivity {
 
     private String TAB = "\t";
-    private String EN_DASH = "–";
+    private String SPACE = " ";
+    private String EN_DASH = "•";
 
     private static String imageName;
 
     LinearLayout linearLayout;
 
     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(200, 200);
+    LinearLayout.LayoutParams layoutParamsMP = new LinearLayout.LayoutParams(125, 125);
+    //LinearLayout.LayoutParams layoutParamsMP = new LinearLayout.LayoutParams(150, 150);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.selected_rule_activity);
+        setContentView(R.layout.selected_page_activity);
+
+        Toolbar toolbar = findViewById(R.id.toolbarSelectedPage);
+        setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
         String pageTitle = intent.getStringExtra("Title");
+        String toolbarTitle = intent.getStringExtra("toolbarTitle");
         String parentActivityName = intent.getStringExtra("parentActivity");
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle(toolbarTitle);
 
         TextView titleTextView;
         titleTextView = (TextView) findViewById(R.id.textViewCategoryTitle);
@@ -51,20 +61,33 @@ public class SelectedPageActivity extends AppCompatActivity {
 
         AppViewModel appViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
 
-        if (parentActivityName.equals("TrafficSignsActivity")) {
-            appViewModel.getTrafficSignsInfo(pageTitle)
-                    .observe(this, this::showSignInformation);
-        } else if (parentActivityName.equals("TrafficRulesActivity")) {
-            appViewModel.getTrafficRuleInfo(pageTitle)
-                    .observe(this, this::showRuleInformation);
-        } else if (parentActivityName.equals("RoadMarkingActivity")) {
-            appViewModel.getRoadMarking(pageTitle)
-                    .observe(this, this::showRoadMarkingInformation);
-        } else if (parentActivityName.equals("MainProvisionsActivity")) {
-            //appViewModel.getMainProvisions(pageTitle).observe(this, this::showMainProvisionsInformation);
+        switch (parentActivityName) {
+            case "TrafficSignsActivity":
+                appViewModel.getTrafficSignsInfo(pageTitle)
+                        .observe(this, this::showSignInformation);
+                break;
+            case "TrafficRulesActivity":
+                appViewModel.getTrafficRuleInfo(pageTitle)
+                        .observe(this, this::showRuleInformation);
+                break;
+            case "RoadMarkingActivity":
+                appViewModel.getRoadMarking(pageTitle)
+                        .observe(this, this::showRoadMarkingInformation);
+                break;
+            case "MainProvisions":
+                appViewModel.getMainProvisions()
+                        .observe(this, this::showMainProvisionsInformation);
+                break;
+            case "ListOfMalfunctions":
+                appViewModel.getListOfMalfunctions()
+                        .observe(this, this::showListOfMalfunctionsInformation);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + parentActivityName);
         }
 
         layoutParams.gravity = Gravity.CENTER;
+        layoutParamsMP.gravity = Gravity.CENTER;
     }
 
     @Override
@@ -92,6 +115,18 @@ public class SelectedPageActivity extends AppCompatActivity {
     private void showRoadMarkingInformation(List<RoadMarkingInfo> roadMarkingInfo) {
         for (int i = 0; i < roadMarkingInfo.size(); i++) {
             fillRoadMarkingParagraph(roadMarkingInfo.get(i));
+        }
+    }
+
+    private void showMainProvisionsInformation(List<MainProvisions> mainProvisions) {
+        for (int i = 0; i < mainProvisions.size(); i++) {
+            fillMainProvisionsParagraph(mainProvisions.get(i));
+        }
+    }
+
+    private void showListOfMalfunctionsInformation(List<ListOfMalfunctions> listOfMalfunctions) {
+        for (int i = 0; i < listOfMalfunctions.size(); i++) {
+            fillListOfMalfunctionsParagraph(listOfMalfunctions.get(i));
         }
     }
 
@@ -130,7 +165,7 @@ public class SelectedPageActivity extends AppCompatActivity {
             }
 
             if (Character.isLowerCase(listItem[0])) {
-                text.append(TAB).append(TAB).append(EN_DASH).append(TAB);
+                text.append(TAB).append(TAB).append(EN_DASH).append(SPACE);
             }
 
             text.append(trafficSignsInfo.getParagraph());
@@ -179,7 +214,7 @@ public class SelectedPageActivity extends AppCompatActivity {
             }
 
             if (Character.isLowerCase(listItem[0])) {
-                text.append(TAB).append(TAB).append(EN_DASH).append(TAB);
+                text.append(TAB).append(TAB).append(EN_DASH).append(SPACE);
             }
 
             text.append(trafficRuleInfo.getParagraph());
@@ -228,10 +263,116 @@ public class SelectedPageActivity extends AppCompatActivity {
             }
 
             if (Character.isLowerCase(listItem[0])) {
-                text.append(TAB).append(TAB).append(EN_DASH).append(TAB);
+                text.append(TAB).append(TAB).append(EN_DASH).append(SPACE);
             }
 
             text.append(roadMarkingInfo.getParagraph());
+
+            textView.setText(text);
+            textView.setTextColor(getResources().getColor(R.color.color_black));
+
+            textView.setPadding(0,0, 0, 20);
+
+            linearLayout.addView(textView);
+        }
+
+    }
+
+    void fillMainProvisionsParagraph(final MainProvisions mainProvisions) {
+
+        if (mainProvisions.getImageName() != null
+                && !mainProvisions.getImageName().equals("no") ) {
+
+            ImageView imageView = new ImageView(this);
+            imageView.setLayoutParams(layoutParamsMP);
+
+            imageName = mainProvisions.getImageName();
+
+            int resID = HandbookLiveDataRoom.getContext().getResources()
+                    .getIdentifier( imageName, "drawable",
+                            HandbookLiveDataRoom.getThisPackageName());
+
+            imageView.setImageResource(resID);
+            imageView.setPadding(0,0, 0, 20);
+
+            linearLayout.addView(imageView);
+        }
+
+        if (mainProvisions.getParagraph() != null &&
+                !mainProvisions.getParagraph().contains("no")) {
+
+            TextView textView = new TextView(this);
+            StringBuilder text = new StringBuilder();
+
+            char[] listItem;
+            listItem = mainProvisions.getParagraph().substring(0, 1).toCharArray();
+
+            if (!Character.isDigit(listItem[0])){
+                text.append(TAB);
+            }
+
+            if (Character.isLowerCase(listItem[0])) {
+                text.append(TAB).append(TAB).append(EN_DASH).append(SPACE);
+            }
+
+            text.append(mainProvisions.getParagraph());
+
+            textView.setText(text);
+            textView.setTextColor(getResources().getColor(R.color.color_black));
+
+            textView.setPadding(0,0, 0, 20);
+
+            linearLayout.addView(textView);
+        }
+
+    }
+
+    void fillListOfMalfunctionsParagraph(final ListOfMalfunctions listOfMalfunctions) {
+
+        if (listOfMalfunctions.getImageName() != null
+                && !listOfMalfunctions.getImageName().equals("no") ) {
+
+            ImageView imageView = new ImageView(this);
+            //imageView.setLayoutParams(layoutParams);
+
+            imageName = listOfMalfunctions.getImageName();
+
+            int resID = HandbookLiveDataRoom.getContext().getResources()
+                    .getIdentifier( imageName, "drawable",
+                            HandbookLiveDataRoom.getThisPackageName());
+
+            imageView.setImageResource(resID);
+            imageView.setPadding(0,0, 0, 20);
+
+            linearLayout.addView(imageView);
+        }
+
+        if (listOfMalfunctions.getParagraph() != null &&
+                !listOfMalfunctions.getParagraph().contains("no")) {
+
+            TextView textView = new TextView(this);
+            StringBuilder text = new StringBuilder();
+
+            char[] listItem, listItemEnd;
+            listItem = listOfMalfunctions.getParagraph().substring(0, 1).toCharArray();
+            listItemEnd = listOfMalfunctions.getParagraph()
+                    .substring(listOfMalfunctions.getParagraph().length() - 1).toCharArray();
+
+            if (!Character.isDigit(listItem[0])){
+                text.append(TAB);
+            }
+
+            if (Character.isLowerCase(listItem[0])) {
+                text.append(TAB).append(TAB).append(EN_DASH).append(SPACE);
+            }
+
+            text.append(listOfMalfunctions.getParagraph());
+
+            if (listItemEnd[0] == '!') {
+                text = new StringBuilder(text.substring(0, text.length() - 1));
+                Log.i("TEXT CENTER", text.toString());
+                textView.setGravity(Gravity.CENTER);
+            }
 
             textView.setText(text);
             textView.setTextColor(getResources().getColor(R.color.color_black));

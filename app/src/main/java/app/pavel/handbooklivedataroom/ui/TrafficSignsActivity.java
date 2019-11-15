@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.Objects;
 
 import app.pavel.handbooklivedataroom.R;
 
@@ -20,6 +23,10 @@ public class TrafficSignsActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.traffic_signs_activity);
+
+        Toolbar toolbar = findViewById(R.id.toolbarSigns);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Дорожные знаки");
 
         trafficSignsAdapter = new TrafficSignsAdapter(this, this);
 
@@ -40,6 +47,7 @@ public class TrafficSignsActivity extends AppCompatActivity
         // start SelectedPageActivity
         Intent intent = new Intent(this, SelectedPageActivity.class);
         intent.putExtra("Title", trafficSignTitle);
+        intent.putExtra("toolbarTitle", "Дорожные знаки");
         intent.putExtra("parentActivity", "TrafficSignsActivity");
         startActivity(intent);
     }

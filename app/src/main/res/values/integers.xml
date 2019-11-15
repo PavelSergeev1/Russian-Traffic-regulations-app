@@ -2,4 +2,5 @@
 <resources>
     <integer name="max_lines_desc">8</integer>
     <integer name="max_lines_desc_launch">10</integer>
+    <integer name="min_lines">0</integer>
 </resources>

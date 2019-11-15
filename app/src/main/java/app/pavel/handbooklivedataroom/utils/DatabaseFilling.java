@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 
 import app.pavel.handbooklivedataroom.R;
+import app.pavel.handbooklivedataroom.data.ListOfMalfunctions;
+import app.pavel.handbooklivedataroom.data.MainProvisions;
 import app.pavel.handbooklivedataroom.data.RoadMarking;
 import app.pavel.handbooklivedataroom.data.RoadMarkingInfo;
 import app.pavel.handbooklivedataroom.data.TrafficRuleInfo;
@@ -52,6 +54,14 @@ public class DatabaseFilling {
 
     private static void addRoadMarkingInfo(final Database database, RoadMarkingInfo roadMarkingInfo) {
         database.roadMarkingInfoDao().save(roadMarkingInfo);
+    }
+
+    private static void addMainProvisions(final Database database, MainProvisions mainProvisions) {
+        database.mainProvisionsDao().save(mainProvisions);
+    }
+
+    private static void addListOfMalfunctions(final Database database, ListOfMalfunctions listOfMalfunctions) {
+        database.listOfMalfunctionsDao().save(listOfMalfunctions);
     }
 
     // filling database when app setting up in the first time
@@ -151,6 +161,33 @@ public class DatabaseFilling {
             roadMarkingInfo.setImageName(RM_IMAGE_NAME[i]);
             roadMarkingInfo.setParagraph(RM_PARAGRAPH[i]);
             addRoadMarkingInfo(database, roadMarkingInfo);
+        }
+
+        String[] MP_ID = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.mp_categoty_id);
+        String[] MP_IMAGE_NAME = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.mp_image_name);
+        String[] MP_PARAGRAPH = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.mp_paragraph);
+
+        for (int i = 0; i < MP_ID.length; i++) {
+            MainProvisions mainProvisions = new MainProvisions();
+            mainProvisions.setCategoryId(MP_ID[i]);
+            mainProvisions.setImageName(MP_IMAGE_NAME[i]);
+            mainProvisions.setParagraph(MP_PARAGRAPH[i]);
+            addMainProvisions(database, mainProvisions);
+        }
+
+        String[] LM_IMAGE_NAME = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.lm_image_name);
+        String[] LM_PARAGRAPH = HandbookLiveDataRoom.getHandbookLiveDataRoomResources()
+                .getStringArray(R.array.lm_paragraph);
+
+        for (int i = 0; i < LM_IMAGE_NAME.length; i++) {
+            ListOfMalfunctions listOfMalfunctions = new ListOfMalfunctions();
+            listOfMalfunctions.setImageName(LM_IMAGE_NAME[i]);
+            listOfMalfunctions.setParagraph(LM_PARAGRAPH[i]);
+            addListOfMalfunctions(database, listOfMalfunctions);
         }
     }
 

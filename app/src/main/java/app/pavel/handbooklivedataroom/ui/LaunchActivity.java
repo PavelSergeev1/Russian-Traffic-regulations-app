@@ -12,9 +12,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Objects;
+
 import app.pavel.handbooklivedataroom.R;
 import app.pavel.handbooklivedataroom.data.Database;
 import app.pavel.handbooklivedataroom.utils.DatabaseFilling;
+import app.pavel.handbooklivedataroom.utils.HandbookLiveDataRoom;
 
 public class LaunchActivity extends AppCompatActivity
     implements LaunchAdapter.OnLaunchItemClickListener {
@@ -34,6 +37,7 @@ public class LaunchActivity extends AppCompatActivity
 
         Toolbar toolbar = findViewById(R.id.toolbarLaunch);
         setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("ПДД РФ");
 
         launchAdapter = new LaunchAdapter(this, this);
 
@@ -77,11 +81,24 @@ public class LaunchActivity extends AppCompatActivity
         } else if (itemTitle.equals("Дорожная разметка и ее характеристики")) {
             Intent intent = new Intent(this, RoadMarkingActivity.class);
             startActivity(intent);
-        } else if (itemTitle.equals("")) {
+        } else if (itemTitle.equals("Основные положения по допуску транспортных средств к " +
+                "эксплуатации и обязанности должностных лиц по обеспечению безопасности " +
+                "дорожного движения")) {
             // start SelectedPageActivity
             Intent intent = new Intent(this, SelectedPageActivity.class);
-            intent.putExtra("Title", "Основные положения");
-            intent.putExtra("parentActivity", "MainProvisionsActivity");
+            intent.putExtra("Title", "Основные положения по допуску транспортных " +
+                    "средств к эксплуатации и обязанности должностных лиц по обеспечению " +
+                    "безопасности дорожного движения");
+            intent.putExtra("toolbarTitle", "Положения по допуску");
+            intent.putExtra("parentActivity", "MainProvisions");
+            startActivity(intent);
+        } else if (itemTitle.equals("Перечень неисправностей и условий, при которых запрещается " +
+                "эксплуатация транспортных средств")) {
+            Intent intent = new Intent(this, SelectedPageActivity.class);
+            intent.putExtra("Title", "Перечень неисправностей и условий, при которых " +
+                    "запрещается эксплуатация транспортных средств");
+            intent.putExtra("toolbarTitle", "Перечень неисправностей");
+            intent.putExtra("parentActivity", "ListOfMalfunctions");
             startActivity(intent);
         }
 

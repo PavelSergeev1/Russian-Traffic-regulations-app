@@ -41,7 +41,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="@dimen/category_info_margin"
             android:maxLines="@integer/max_lines_desc_launch"
-            android:minLines="0"
+            android:minLines="@integer/min_lines"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

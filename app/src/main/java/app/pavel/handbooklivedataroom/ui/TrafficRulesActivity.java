@@ -1,6 +1,7 @@
 package app.pavel.handbooklivedataroom.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import java.util.Objects;
 
 import app.pavel.handbooklivedataroom.R;
 
@@ -21,12 +24,9 @@ public class TrafficRulesActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.traffic_rules_activity);
 
-        /*
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbarTrafficRules);
         setSupportActionBar(toolbar);
-
-         */
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Правила дорожного движения");
 
         trafficRulesAdapter = new TrafficRulesAdapter( this, this);
 
@@ -75,6 +75,7 @@ public class TrafficRulesActivity extends AppCompatActivity
         // start SelectedRuleActivity
         Intent intent = new Intent(this, SelectedPageActivity.class);
         intent.putExtra("Title", trafficRuleTitle);
+        intent.putExtra("toolbarTitle", "Правила дорожного движения");
         intent.putExtra("parentActivity", "TrafficRulesActivity");
         startActivity(intent);
 

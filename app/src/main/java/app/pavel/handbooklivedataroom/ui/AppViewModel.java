@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import app.pavel.handbooklivedataroom.data.ListOfMalfunctions;
+import app.pavel.handbooklivedataroom.data.ListOfMalfunctionsDao;
 import app.pavel.handbooklivedataroom.data.MainProvisions;
 import app.pavel.handbooklivedataroom.data.MainProvisionsDao;
 import app.pavel.handbooklivedataroom.data.RoadMarking;
@@ -38,6 +40,7 @@ public class AppViewModel extends AndroidViewModel {
     private RoadMarkingDao roadMarkingDao;
     private RoadMarkingInfoDao roadMarkingInfoDao;
     private MainProvisionsDao mainProvisionsDao;
+    private ListOfMalfunctionsDao listOfMalfunctionsDao;
 
     private ExecutorService executorService;
 
@@ -52,6 +55,7 @@ public class AppViewModel extends AndroidViewModel {
         roadMarkingDao = Database.getInstance(application).roadMarkingDao();
         roadMarkingInfoDao = Database.getInstance(application).roadMarkingInfoDao();
         mainProvisionsDao = Database.getInstance(application).mainProvisionsDao();
+        listOfMalfunctionsDao = Database.getInstance(application).listOfMalfunctionsDao();
 
         executorService = Executors.newSingleThreadExecutor();
     }
@@ -84,8 +88,12 @@ public class AppViewModel extends AndroidViewModel {
         return roadMarkingInfoDao.findRoadMarkingInfo(roadMarking);
     }
 
-    LiveData<List<MainProvisions>> getMainProvisions(String mainProvisions) {
-        return mainProvisionsDao.findMainProvisions(mainProvisions);
+    LiveData<List<MainProvisions>> getMainProvisions() {
+        return mainProvisionsDao.findMainProvisions();
+    }
+
+    LiveData<List<ListOfMalfunctions>> getListOfMalfunctions() {
+        return listOfMalfunctionsDao.findListOfMalfunctions();
     }
 
 }

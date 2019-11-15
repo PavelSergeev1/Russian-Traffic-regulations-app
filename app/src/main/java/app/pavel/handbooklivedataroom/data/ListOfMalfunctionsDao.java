@@ -11,19 +11,19 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface MainProvisionsDao {
+public interface ListOfMalfunctionsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void saveAll(List<MainProvisions> mainProvisions);
+    void saveAll(List<ListOfMalfunctions> listOfMalfunctions);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void save(MainProvisions mainProvisions);
+    void save(ListOfMalfunctions listOfMalfunctions);
 
     @Update
-    void update(MainProvisions mainProvisions);
+    void update(ListOfMalfunctions listOfMalfunctions);
 
     @Delete
-    void delete(MainProvisions mainProvisions);
+    void delete(ListOfMalfunctions listOfMalfunctions);
 
-    @Query("SELECT * FROM main_provisions")
-    LiveData<List<MainProvisions>> findMainProvisions();
+    @Query("SELECT * FROM list_of_malfunctions")
+    LiveData<List<ListOfMalfunctions>> findListOfMalfunctions();
 }
