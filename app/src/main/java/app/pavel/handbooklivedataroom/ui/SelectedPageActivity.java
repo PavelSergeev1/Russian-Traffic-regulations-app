@@ -33,8 +33,9 @@ public class SelectedPageActivity extends AppCompatActivity {
 
     LinearLayout linearLayout;
 
-    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(200, 200);
-    LinearLayout.LayoutParams layoutParamsMP = new LinearLayout.LayoutParams(125, 125);
+    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(300, 200);
+    LinearLayout.LayoutParams layoutParamsRM = new LinearLayout.LayoutParams(600, 200);
+    LinearLayout.LayoutParams layoutParamsMP = new LinearLayout.LayoutParams(300, 125);
     //LinearLayout.LayoutParams layoutParamsMP = new LinearLayout.LayoutParams(150, 150);
 
 
@@ -51,7 +52,7 @@ public class SelectedPageActivity extends AppCompatActivity {
         String toolbarTitle = intent.getStringExtra("toolbarTitle");
         String parentActivityName = intent.getStringExtra("parentActivity");
 
-        Objects.requireNonNull(getSupportActionBar()).setTitle(toolbarTitle);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(pageTitle);
 
         TextView titleTextView;
         titleTextView = (TextView) findViewById(R.id.textViewCategoryTitle);
@@ -87,6 +88,7 @@ public class SelectedPageActivity extends AppCompatActivity {
         }
 
         layoutParams.gravity = Gravity.CENTER;
+        layoutParamsRM.gravity = Gravity.CENTER;
         layoutParamsMP.gravity = Gravity.CENTER;
     }
 
@@ -235,7 +237,7 @@ public class SelectedPageActivity extends AppCompatActivity {
                 && !roadMarkingInfo.getImageName().equals("no") ) {
 
             ImageView imageView = new ImageView(this);
-            imageView.setLayoutParams(layoutParams);
+            imageView.setLayoutParams(layoutParamsRM);
 
             imageName = roadMarkingInfo.getImageName();
 

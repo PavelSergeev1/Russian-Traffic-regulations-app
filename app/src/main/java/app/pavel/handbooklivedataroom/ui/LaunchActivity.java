@@ -17,7 +17,6 @@ import java.util.Objects;
 import app.pavel.handbooklivedataroom.R;
 import app.pavel.handbooklivedataroom.data.Database;
 import app.pavel.handbooklivedataroom.utils.DatabaseFilling;
-import app.pavel.handbooklivedataroom.utils.HandbookLiveDataRoom;
 
 public class LaunchActivity extends AppCompatActivity
     implements LaunchAdapter.OnLaunchItemClickListener {

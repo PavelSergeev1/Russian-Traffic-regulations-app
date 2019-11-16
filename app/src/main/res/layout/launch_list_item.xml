@@ -15,7 +15,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewLaunch"
@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@+id/textViewContentLaunch"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
@@ -56,6 +56,7 @@
             android:layout_marginStart="@dimen/category_info_margin"
             android:layout_marginTop="@dimen/category_info_margin"
             android:layout_marginEnd="@dimen/category_info_margin"
+            android:layout_marginBottom="@dimen/category_info_margin"
             android:maxLines="@integer/max_lines_desc"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toTopOf="@+id/textViewContentLaunch"

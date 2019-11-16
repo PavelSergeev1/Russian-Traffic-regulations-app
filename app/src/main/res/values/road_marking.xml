@@ -8,7 +8,7 @@
 
     <string-array name="road_marking_image_name">
         <item>ic_rm_1_1</item>
-        <item>ic_rm_2_1_1</item>
+        <item>ic_rm_2_3</item>
     </string-array>
 
 </resources>
