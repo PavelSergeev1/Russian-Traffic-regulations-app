@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/windowBackground"
     tools:context=".ui.RoadMarkingActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -19,7 +20,15 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:titleTextColor="@android:color/white"/>
+            app:titleTextColor="@android:color/white">
+            <TextView
+                android:id="@+id/toolbarRoadMarkingTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:maxLines="@integer/max_lines_toolbar"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
@@ -32,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            tools:listitem="@layout/launch_list_item" />
+            tools:listitem="@layout/list_item" />
     </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

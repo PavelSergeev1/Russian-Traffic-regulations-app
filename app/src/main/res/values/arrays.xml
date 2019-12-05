@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="list_of_fonts">
+        <item>montserrat_regular</item>
+        <item>open_sans</item>
+        <item>pt_sans_regular</item>
+        <item>roboto_regular</item>
+        <item>roboto_mono_light</item>
+        <item>rubik_regular</item>
+        <item>ubuntu_regular</item>
+    </string-array>
 
+    <string-array name="list_of_fonts_for_settings">
+        <item>Montserrat regular</item>
+        <item>Open sans</item>
+        <item>PT Sans regular</item>
+        <item>Roboto regular</item>
+        <item>Roboto mono light</item>
+        <item>Rubik regular</item>
+        <item>Ubuntu regular</item>
+    </string-array>
+
+    <string-array name="list_of_text_sizes">
+        <item>text_small</item>
+        <item>text_medium</item>
+        <item>text_big</item>
+    </string-array>
+
+    <string-array name="list_of_text_sizes_for_settings">
+        <item>Мелкий</item>
+        <item>Средний</item>
+        <item>Крупный</item>
+    </string-array>
 
 </resources>

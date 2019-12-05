@@ -1,53 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/layout_cardview_margin"
-    android:layout_marginTop="@dimen/layout_cardview_margin"
-    android:layout_marginEnd="@dimen/layout_cardview_margin"
-    android:layout_marginBottom="@dimen/layout_cardview_margin"
-    app:cardCornerRadius="@dimen/cardview_radius"
-    app:cardElevation="3dp"
-    app:cardPreventCornerOverlap="false">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    android:clickable="true"
+    android:focusable="true">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="@dimen/cardview_radius"
+        app:cardElevation="@dimen/no_cardview_elevation"
+        app:cardPreventCornerOverlap="false">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="@dimen/image_size_width"
-            android:layout_height="@dimen/image_size_height"
-            android:layout_marginTop="@dimen/category_info_margin"
-            android:layout_marginEnd="@dimen/category_info_margin"
-            android:layout_marginBottom="@dimen/category_info_margin"
-            android:contentDescription="@string/category_image_description"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.98"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_launcher_background" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/category_info_margin"
-            android:layout_marginTop="@dimen/category_info_margin"
-            android:layout_marginEnd="@dimen/category_info_margin"
-            android:layout_marginBottom="@dimen/category_info_margin"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.02"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@tools:sample/lorem" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/image_size_width"
+                android:layout_height="@dimen/image_size_height"
+                android:layout_marginTop="@dimen/category_info_margin"
+                android:layout_marginEnd="@dimen/category_info_margin"
+                android:layout_marginBottom="@dimen/category_info_margin"
+                android:contentDescription="@string/category_image_description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.98"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_launcher_background" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/category_info_margin"
+                android:layout_marginTop="@dimen/category_info_margin"
+                android:layout_marginEnd="@dimen/category_info_margin"
+                android:layout_marginBottom="@dimen/category_info_margin"
+                android:textColor="@color/color_black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintHorizontal_bias="0.02"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/lorem" />
 
-</androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -1,32 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="app.pavel.handbooklivedataroom">
+    package="app.pavel.pdd">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name="app.pavel.pdd.utils.HandbookLiveDataRoom"
+        android:hardwareAccelerated="false"
         android:allowBackup="true"
-        android:name=".utils.HandbookLiveDataRoom"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.LaunchActivity" android:theme="@style/noAnimTheme">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/app_id"/>
+        <activity android:name="app.pavel.pdd.ui.SplashActivity"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.TrafficRulesActivity" android:theme="@style/noAnimTheme"/>
-
-        <activity android:name=".ui.TrafficSignsActivity" android:theme="@style/noAnimTheme"/>
-
-        <activity android:name=".ui.SelectedPageActivity" android:theme="@style/noAnimTheme"/>
-
-        <activity android:name=".ui.RoadMarkingActivity" android:theme="@style/noAnimTheme"/>
+        <activity
+            android:name="app.pavel.pdd.ui.LaunchActivity"
+            android:theme="@style/noAnimTheme">
+        </activity>
+        <activity
+            android:name="app.pavel.pdd.ui.SettingsActivity"
+            android:label="@string/title_settings"
+            android:parentActivityName="app.pavel.pdd.ui.LaunchActivity"
+            android:theme="@style/noAnimTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="app.pavel.pdd.ui.LaunchActivity" />
+        </activity>
+        <activity
+            android:name="app.pavel.pdd.ui.TrafficRulesActivity"
+            android:parentActivityName="app.pavel.pdd.ui.LaunchActivity"
+            android:theme="@style/noAnimTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="app.pavel.pdd.ui.LaunchActivity" />
+        </activity>
+        <activity
+            android:name="app.pavel.pdd.ui.TrafficSignsActivity"
+            android:parentActivityName="app.pavel.pdd.ui.LaunchActivity"
+            android:theme="@style/noAnimTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="app.pavel.pdd.ui.LaunchActivity" />
+        </activity>
+        <activity
+            android:name="app.pavel.pdd.ui.RoadMarkingActivity"
+            android:parentActivityName="app.pavel.pdd.ui.LaunchActivity"
+            android:theme="@style/noAnimTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="app.pavel.pdd.ui.LaunchActivity" />
+        </activity>
+        <activity
+            android:name="app.pavel.pdd.ui.SelectedPageActivity"
+            android:theme="@style/noAnimTheme" />
     </application>
 
 </manifest>

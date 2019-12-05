@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:orientation="vertical"
-    android:background="@color/windowBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".ui.SelectedPageActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -20,14 +21,21 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:titleTextColor="@android:color/white"/>
+            app:titleTextColor="@android:color/white">
+            <TextView
+                android:id="@+id/toolbarSelectedPageTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:maxLines="@integer/max_lines_toolbar" />
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/appBarLayout"
+        android:layout_height="0dp"
+        android:layout_weight="8"
         android:isScrollContainer="true">
 
         <LinearLayout
@@ -36,28 +44,42 @@
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <TextView
-                android:id="@+id/textViewCategoryTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/category_info_margin"
-                android:layout_marginTop="@dimen/text_margin"
-                android:layout_marginEnd="@dimen/category_info_margin"
-                android:gravity="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                tools:text="@tools:sample/lorem" />
-
             <LinearLayout
-                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/category_info_margin"
-                android:layout_marginTop="@dimen/text_margin_top_bottom"
-                android:layout_marginEnd="@dimen/category_info_margin"
-                android:layout_marginBottom="@dimen/text_margin_top_bottom"
-                android:orientation="vertical" />
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textViewCategoryTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/category_info_margin"
+                    android:layout_marginTop="@dimen/text_margin"
+                    android:layout_marginEnd="@dimen/category_info_margin"
+                    android:gravity="center"
+                    android:textColor="@color/color_black"
+                    tools:text="@tools:sample/lorem" />
 
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/category_info_margin"
+                    android:layout_marginTop="@dimen/text_margin_top_bottom"
+                    android:layout_marginEnd="@dimen/category_info_margin"
+                    android:layout_marginBottom="@dimen/text_margin_top_bottom"
+                    android:orientation="vertical" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-</RelativeLayout>
+    <com.google.android.gms.ads.AdView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/adViewSelectedPage"
+        android:visibility="gone"
+        app:adSize="BANNER"
+        app:adUnitId="@string/ad_id_test">
+    </com.google.android.gms.ads.AdView>
+
+</LinearLayout>

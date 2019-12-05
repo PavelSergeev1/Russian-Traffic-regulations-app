@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/text"
+        app:allowDividerBelow="true">
+
+        <ListPreference
+            android:defaultValue="text_medium"
+            android:entries="@array/list_of_text_sizes_for_settings"
+            android:entryValues="@array/list_of_text_sizes"
+            android:key="pref_text_text_size"
+            android:persistent="true"
+            android:icon="@drawable/ic_text_fields_24dp"
+            android:summary="@string/text_size_description"
+            android:title="@string/text_size"
+            android:negativeButtonText="@string/title_cancel" />
+        <ListPreference
+            android:defaultValue="open_sans"
+            android:entries="@array/list_of_fonts_for_settings"
+            android:entryValues="@array/list_of_fonts"
+            android:key="pref_text_font"
+            android:persistent="true"
+            android:icon="@drawable/ic_format_color_text_24dp"
+            android:summary="@string/text_font_description"
+            android:title="@string/text_font"
+            android:negativeButtonText="@string/title_cancel"
+            app:allowDividerAbove="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

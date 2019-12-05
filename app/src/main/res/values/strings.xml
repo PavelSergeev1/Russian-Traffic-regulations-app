@@ -1,10 +1,22 @@
 <resources>
-    <string name="app_name">HandBookLiveDataRoom</string>
+    <string name="app_name">ПДД РФ - правила дорожного движения России</string>
     <string name="add">Add trafficRules</string>
     <string name="delete">Delete</string>
-    <string name="category_image_description">Category Imauge</string>
+    <string name="category_image_description">Category Image</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="title_settings">Настройки</string>
+    <string name="text">Текст</string>
+    <string name="title_cancel">Закрыть</string>
+
+    <string name="text_font">Шрифт текста</string>
+    <string name="text_font_description">Выберите удобный для чтения шрифт</string>
+
+    <string name="text_size">Размер текста</string>
+    <string name="text_size_description">Выберите удобный для чтения размер шрифта</string>
+
+    <string name="app_id">ca-app-pub-7512755405624159~2397475545</string>
+    <string name="ad_id">ca-app-pub-7512755405624159/1476982409</string>
+    <string name="ad_id_test">ca-app-pub-3940256099942544/6300978111</string>
 </resources>
