@@ -18,11 +18,11 @@ public class HandbookLiveDataRoom extends Application {
 
     private static Application sApplication;
 
-    public static Application getApplication() {
+    private static Application getApplication() {
         return sApplication;
     }
 
-    public static Context getContext() {
+    private static Context getContext() {
         return getApplication().getApplicationContext();
     }
 

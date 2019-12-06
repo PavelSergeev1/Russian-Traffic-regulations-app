@@ -77,7 +77,7 @@ public class LaunchActivity extends AppCompatActivity
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewLaunch);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(launchAdapter);
         recyclerView.addItemDecoration(new MarginItemDecorator(margin));

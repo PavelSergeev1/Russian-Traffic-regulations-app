@@ -56,12 +56,6 @@ public class TrafficRulesActivity extends AppCompatActivity
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-    }
-
-    @Override
     public void onRuleClickListener(String trafficRuleTitle) {
         // start SelectedRuleActivity
         Intent intent = new Intent(this, SelectedPageActivity.class);
