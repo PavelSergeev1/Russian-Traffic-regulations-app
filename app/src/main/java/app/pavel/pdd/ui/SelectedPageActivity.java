@@ -30,6 +30,7 @@ import app.pavel.pdd.data.RoadMarkingInfo;
 import app.pavel.pdd.data.TrafficRuleInfo;
 import app.pavel.pdd.data.TrafficSignsInfo;
 import app.pavel.pdd.utils.HandbookLiveDataRoom;
+import app.pavel.pdd.view_models.AppViewModel;
 
 public class SelectedPageActivity extends AppCompatActivity {
 
@@ -57,9 +58,7 @@ public class SelectedPageActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbarSelectedPage);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_24dp);
-        toolbar.setNavigationOnClickListener(view -> {
-            finish();
-        });
+        toolbar.setNavigationOnClickListener(view -> finish());
 
         TextView toolbarSelectedPageTextView = findViewById(R.id.toolbarSelectedPageTextView);
         toolbarSelectedPageTextView.setTypeface(
@@ -153,10 +152,13 @@ public class SelectedPageActivity extends AppCompatActivity {
         outState.putString("parentActivityName", parentActivityName);
     }
 
-    public boolean isNetworkAvailable() {
+    private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        NetworkInfo activeNetworkInfo = null;
+        if (connectivityManager != null) {
+            activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        }
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
@@ -233,7 +235,7 @@ public class SelectedPageActivity extends AppCompatActivity {
                 break;
         }
 
-        int resID = HandbookLiveDataRoom.getContext().getResources()
+        int resID = getApplicationContext().getResources()
                 .getIdentifier(imageName, "drawable",
                         HandbookLiveDataRoom.getThisPackageName());
 

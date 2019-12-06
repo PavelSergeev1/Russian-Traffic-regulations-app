@@ -4,8 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.util.TypedValue;
 
 import app.pavel.pdd.R;
@@ -15,10 +13,18 @@ public class HandbookLiveDataRoom extends Application {
     private static String packageName;
     private static Resources resources;
 
-    private static Context context;
+    private static Typeface montserratRegular, openSans, PTSansRegular, robotoMonoLight,
+            robotoRegular, rubikRegular, ubuntuRegular;
 
-    private static Typeface montserratRegular, openSans, PTSansRegular, robotoMonoLight, robotoRegular,
-            rubikRegular, ubuntuRegular;
+    private static Application sApplication;
+
+    public static Application getApplication() {
+        return sApplication;
+    }
+
+    public static Context getContext() {
+        return getApplication().getApplicationContext();
+    }
 
     @Override
     public void onCreate() {
@@ -27,19 +33,22 @@ public class HandbookLiveDataRoom extends Application {
         resources = getResources();
         packageName = getPackageName();
 
-        context = this;
+        sApplication = this;
 
-        montserratRegular = Typeface.createFromAsset(context.getAssets(), "fonts/montserrat_regular.ttf");
-        openSans = Typeface.createFromAsset(context.getAssets(), "fonts/open_sans.ttf");
-        PTSansRegular = Typeface.createFromAsset(context.getAssets(), "fonts/pt_sans_regular.ttf");
-        robotoRegular = Typeface.createFromAsset(context.getAssets(), "fonts/roboto_regular.ttf");
-        robotoMonoLight = Typeface.createFromAsset(context.getAssets(), "fonts/roboto_mono_light.ttf");
-        rubikRegular = Typeface.createFromAsset(context.getAssets(), "fonts/rubik_regular.ttf");
-        ubuntuRegular = Typeface.createFromAsset(context.getAssets(), "fonts/ubuntu_regular.ttf");
-    }
-
-    public static Context getContext() {
-        return context;
+        montserratRegular = Typeface.createFromAsset(
+                getContext().getAssets(), "fonts/montserrat_regular.ttf");
+        openSans = Typeface.createFromAsset(
+                getContext().getAssets(), "fonts/open_sans.ttf");
+        PTSansRegular = Typeface.createFromAsset(
+                getContext().getAssets(), "fonts/pt_sans_regular.ttf");
+        robotoRegular = Typeface.createFromAsset(
+                getContext().getAssets(), "fonts/roboto_regular.ttf");
+        robotoMonoLight = Typeface.createFromAsset(
+                getContext().getAssets(), "fonts/roboto_mono_light.ttf");
+        rubikRegular = Typeface.createFromAsset(
+                getContext().getAssets(), "fonts/rubik_regular.ttf");
+        ubuntuRegular = Typeface.createFromAsset(
+                getContext().getAssets(), "fonts/ubuntu_regular.ttf");
     }
 
     public static Resources getHandbookLiveDataRoomResources() {
@@ -81,46 +90,47 @@ public class HandbookLiveDataRoom extends Application {
         return typeface;
     }
 
-   public static float getTitleTextViewSize(String textsize) {
+   public static float getTitleTextViewSize(String textSize) {
         float size;
-        switch (textsize) {
+        switch (textSize) {
             case "text_medium":
                 size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                        context.getResources().getDimension(R.dimen.title_text_medium),
-                        context.getResources().getDisplayMetrics());
+                        getContext().getResources().getDimension(R.dimen.title_text_medium),
+                        getContext().getResources().getDisplayMetrics());
                 break;
             case "text_big":
                 size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                        context.getResources().getDimension(R.dimen.title_text_big),
-                        context.getResources().getDisplayMetrics());
+                        getContext().getResources().getDimension(R.dimen.title_text_big),
+                        getContext().getResources().getDisplayMetrics());
                 break;
             default:
                 size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                        context.getResources().getDimension(R.dimen.title_text_small),
-                        context.getResources().getDisplayMetrics());
+                        getContext().getResources().getDimension(R.dimen.title_text_small),
+                        getContext().getResources().getDisplayMetrics());
         }
 
        return size;
    }
 
-    public static float getTextViewSize(String textsize) {
+    public static float getTextViewSize(String textSize) {
         float size;
-        switch (textsize) {
+        switch (textSize) {
             case "text_medium":
                 size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                        context.getResources().getDimension(R.dimen.text_medium),
-                        context.getResources().getDisplayMetrics());
+                        getContext().getResources().getDimension(R.dimen.text_medium),
+                        getContext().getResources().getDisplayMetrics());
                 break;
             case "text_big":
                 size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                        context.getResources().getDimension(R.dimen.text_big),
-                        context.getResources().getDisplayMetrics());
+                        getContext().getResources().getDimension(R.dimen.text_big),
+                        getContext().getResources().getDisplayMetrics());
                 break;
             default:
                 size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                        context.getResources().getDimension(R.dimen.text_small),
-                        context.getResources().getDisplayMetrics());
+                        getContext().getResources().getDimension(R.dimen.text_small),
+                        getContext().getResources().getDisplayMetrics());
         }
         return size;
     }
+
 }

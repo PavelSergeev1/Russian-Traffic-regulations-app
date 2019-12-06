@@ -1,6 +1,5 @@
-package app.pavel.pdd.ui;
+package app.pavel.pdd.utils;
 
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
 
@@ -8,26 +7,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MarginItemDecorator extends RecyclerView.ItemDecoration {
 
-    private int margin;
+    private final int margin;
 
-    private Rect rect;
-
-    private Paint paint;
-
-    MarginItemDecorator(int margin) {
+    public MarginItemDecorator(int margin) {
         this.margin = margin;
-
-        //paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        //paint.setColor(Color.TRANSPARENT);
-        //paint.setStyle(Paint.Style.STROKE);
     }
 
     @Override
     public void getItemOffsets(Rect outRect, View view,
                                RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
-
-        this.rect = outRect;
 
         if (parent.getChildAdapterPosition(view) == 0) {
             outRect.set(margin, margin, margin, margin);
@@ -36,14 +25,4 @@ public class MarginItemDecorator extends RecyclerView.ItemDecoration {
         }
     }
 
-    /*
-
-    @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-        super.onDraw(c, parent, state);
-        //drawR(c, parent);
-        c.drawRect(rect.left, rect.top, rect.right, rect.bottom, paint);
-    }
-
-     */
 }

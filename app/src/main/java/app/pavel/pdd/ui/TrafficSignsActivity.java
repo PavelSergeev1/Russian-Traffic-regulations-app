@@ -12,7 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import app.pavel.pdd.R;
+import app.pavel.pdd.ui.adapters.TrafficSignsAdapter;
 import app.pavel.pdd.utils.HandbookLiveDataRoom;
+import app.pavel.pdd.utils.MarginItemDecorator;
+import app.pavel.pdd.view_models.AppViewModel;
 
 import static app.pavel.pdd.ui.LaunchActivity.margin;
 
@@ -30,9 +33,7 @@ public class TrafficSignsActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_24dp);
 
-        toolbar.setNavigationOnClickListener(view -> {
-            finish();
-        });
+        toolbar.setNavigationOnClickListener(view -> finish());
 
         TextView toolbarSignsTextView = findViewById(R.id.toolbarSignsTextView);
         toolbarSignsTextView.setText("Дорожные знаки");

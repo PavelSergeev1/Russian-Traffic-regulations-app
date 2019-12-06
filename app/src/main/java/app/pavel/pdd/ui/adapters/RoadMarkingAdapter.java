@@ -1,4 +1,4 @@
-package app.pavel.pdd.ui;
+package app.pavel.pdd.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import java.util.List;
 
 import app.pavel.pdd.R;
 import app.pavel.pdd.data.RoadMarking;
+import app.pavel.pdd.ui.LaunchActivity;
 import app.pavel.pdd.utils.HandbookLiveDataRoom;
 
 public class RoadMarkingAdapter extends
@@ -25,11 +26,13 @@ public class RoadMarkingAdapter extends
         void onRoadMarkingClickListener(String roadMarkingTitle);
     }
 
+    private final Context context;
     private List<RoadMarking> data;
     private final LayoutInflater layoutInflater;
     private final OnRoadMarkingClickListener onRoadMarkingClickListener;
 
-    RoadMarkingAdapter(Context context, OnRoadMarkingClickListener listener) {
+    public RoadMarkingAdapter(Context context, OnRoadMarkingClickListener listener) {
+        this.context = context;
         this.data = new ArrayList<>();
         this.onRoadMarkingClickListener = listener;
         this.layoutInflater = (LayoutInflater)
@@ -86,7 +89,7 @@ public class RoadMarkingAdapter extends
 
                 String imageName = roadMarking.getImageName();
 
-                int resID = HandbookLiveDataRoom.getContext().getResources()
+                int resID = context.getResources()
                         .getIdentifier(imageName, "drawable",
                                 HandbookLiveDataRoom.getThisPackageName());
 

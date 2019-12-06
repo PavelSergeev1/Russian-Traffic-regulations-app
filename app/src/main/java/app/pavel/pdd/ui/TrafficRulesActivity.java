@@ -12,7 +12,10 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import app.pavel.pdd.R;
+import app.pavel.pdd.ui.adapters.TrafficRulesAdapter;
 import app.pavel.pdd.utils.HandbookLiveDataRoom;
+import app.pavel.pdd.utils.MarginItemDecorator;
+import app.pavel.pdd.view_models.AppViewModel;
 
 import static app.pavel.pdd.ui.LaunchActivity.margin;
 
@@ -29,9 +32,7 @@ public class TrafficRulesActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbarTrafficRules);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_24dp);
-        toolbar.setNavigationOnClickListener(view -> {
-            finish();
-        });
+        toolbar.setNavigationOnClickListener(view -> finish());
 
         TextView toolbarTrafficRulesTextView = findViewById(R.id.toolbarTrafficRulesTextView);
         toolbarTrafficRulesTextView.setText("Правила дорожного движения");

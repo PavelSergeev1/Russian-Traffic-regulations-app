@@ -43,32 +43,26 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/textViewCategoryTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/textViewCategoryTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/category_info_margin"
-                    android:layout_marginTop="@dimen/text_margin"
-                    android:layout_marginEnd="@dimen/category_info_margin"
-                    android:gravity="center"
-                    android:textColor="@color/color_black"
-                    tools:text="@tools:sample/lorem" />
+                android:layout_marginStart="@dimen/category_info_margin"
+                android:layout_marginTop="@dimen/text_margin"
+                android:layout_marginEnd="@dimen/category_info_margin"
+                android:gravity="center"
+                android:textColor="@color/color_black"
+                tools:text="@tools:sample/lorem" />
 
-                <LinearLayout
-                    android:id="@+id/linearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/category_info_margin"
-                    android:layout_marginTop="@dimen/text_margin_top_bottom"
-                    android:layout_marginEnd="@dimen/category_info_margin"
-                    android:layout_marginBottom="@dimen/text_margin_top_bottom"
-                    android:orientation="vertical" />
-            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/category_info_margin"
+                android:layout_marginTop="@dimen/text_margin_top_bottom"
+                android:layout_marginEnd="@dimen/category_info_margin"
+                android:layout_marginBottom="@dimen/text_margin_top_bottom"
+                android:orientation="vertical" />
         </LinearLayout>
     </ScrollView>
 

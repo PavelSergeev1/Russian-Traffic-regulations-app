@@ -22,7 +22,7 @@ public class RoadMarking {
     public RoadMarking() { }
 
     @Ignore
-    public RoadMarking(@NotNull String title, String content, String imageName) {
+    public RoadMarking(@NotNull String title, String imageName) {
         this.title = title;
         this.imageName = imageName;
     }

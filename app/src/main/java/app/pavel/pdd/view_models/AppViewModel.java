@@ -1,4 +1,4 @@
-package app.pavel.pdd.ui;
+package app.pavel.pdd.view_models;
 
 import android.app.Application;
 
@@ -6,8 +6,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import app.pavel.pdd.data.ListOfMalfunctions;
 import app.pavel.pdd.data.ListOfMalfunctionsDao;
@@ -53,43 +51,41 @@ public class AppViewModel extends AndroidViewModel {
         roadMarkingInfoDao = Database.getInstance(application).roadMarkingInfoDao();
         mainProvisionsDao = Database.getInstance(application).mainProvisionsDao();
         listOfMalfunctionsDao = Database.getInstance(application).listOfMalfunctionsDao();
-
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
     }
 
-    LiveData<List<Launch>> getAllLaunchItems() {
+    public LiveData<List<Launch>> getAllLaunchItems() {
         return launchDao.findAll();
     }
 
-    LiveData<List<TrafficRules>> getAllTrafficRules() {
+    public LiveData<List<TrafficRules>> getAllTrafficRules() {
         return trafficRulesDao.findAll();
     }
 
-    LiveData<List<TrafficRuleInfo>> getTrafficRuleInfo(String ruleTitle) {
+    public LiveData<List<TrafficRuleInfo>> getTrafficRuleInfo(String ruleTitle) {
         return trafficRuleInfoDao.findTrafficRuleInfo(ruleTitle);
     }
 
-    LiveData<List<TrafficSigns>> getAllTrafficSigns() {
+    public LiveData<List<TrafficSigns>> getAllTrafficSigns() {
         return trafficSignsDao.findAll();
     }
 
-    LiveData<List<TrafficSignsInfo>> getTrafficSignsInfo(String signTitle) {
+    public LiveData<List<TrafficSignsInfo>> getTrafficSignsInfo(String signTitle) {
         return trafficSignsInfoDao.findTrafficSignsInfo(signTitle);
     }
 
-    LiveData<List<RoadMarking>> getAllRoadMarking() {
+    public LiveData<List<RoadMarking>> getAllRoadMarking() {
         return roadMarkingDao.findAll();
     }
 
-    LiveData<List<RoadMarkingInfo>> getRoadMarking(String roadMarking) {
+    public LiveData<List<RoadMarkingInfo>> getRoadMarking(String roadMarking) {
         return roadMarkingInfoDao.findRoadMarkingInfo(roadMarking);
     }
 
-    LiveData<List<MainProvisions>> getMainProvisions() {
+    public LiveData<List<MainProvisions>> getMainProvisions() {
         return mainProvisionsDao.findMainProvisions();
     }
 
-    LiveData<List<ListOfMalfunctions>> getListOfMalfunctions() {
+    public LiveData<List<ListOfMalfunctions>> getListOfMalfunctions() {
         return listOfMalfunctionsDao.findListOfMalfunctions();
     }
 

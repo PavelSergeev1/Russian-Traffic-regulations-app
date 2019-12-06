@@ -16,16 +16,21 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.jetbrains.annotations.NotNull;
+
 import app.pavel.pdd.R;
+import app.pavel.pdd.ui.adapters.LaunchAdapter;
 import app.pavel.pdd.utils.HandbookLiveDataRoom;
+import app.pavel.pdd.utils.MarginItemDecorator;
+import app.pavel.pdd.view_models.AppViewModel;
 
 public class LaunchActivity extends AppCompatActivity
     implements LaunchAdapter.OnLaunchItemClickListener {
 
     public static final int margin = 20;
 
-    public static final String FONTS = "pref_text_font";
-    public static final String SIZES = "pref_text_text_size";
+    private static final String FONTS = "pref_text_font";
+    private static final String SIZES = "pref_text_text_size";
 
     public static String currentFont;
     public static String currentTextSize;
@@ -79,18 +84,6 @@ public class LaunchActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -99,14 +92,14 @@ public class LaunchActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NotNull MenuItem item) {
         Intent preferenceIntent = new Intent(this, SettingsActivity.class);
         preferenceIntent.putExtra("textFont", currentFont);
         startActivity(preferenceIntent);
         return super.onOptionsItemSelected(item);
     }
 
-    private SharedPreferences.OnSharedPreferenceChangeListener preferencesChangeListener =
+    private final SharedPreferences.OnSharedPreferenceChangeListener preferencesChangeListener =
             new SharedPreferences.OnSharedPreferenceChangeListener() {
 
                 @Override
@@ -168,8 +161,8 @@ public class LaunchActivity extends AppCompatActivity
 
     }
 
-    static class UpdateRecyclerView {
-        void onUpdateRecyclerView() {
+    public static class UpdateRecyclerView {
+        public void onUpdateRecyclerView() {
 
             launchAdapter.notifyDataSetChanged();
         }

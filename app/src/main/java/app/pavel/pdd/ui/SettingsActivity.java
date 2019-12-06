@@ -11,7 +11,7 @@ import app.pavel.pdd.utils.HandbookLiveDataRoom;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    public TextView toolbarLaunchTextView;
+    private TextView toolbarLaunchTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
         toolbarLaunchTextView.setTextSize(
                 HandbookLiveDataRoom.getTitleTextViewSize(LaunchActivity.currentTextSize));
 
-        toolbar.setNavigationOnClickListener(view -> {
-            finish();
-        });
+        toolbar.setNavigationOnClickListener(view -> finish());
     }
 
 }

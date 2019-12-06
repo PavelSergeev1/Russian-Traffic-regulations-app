@@ -7,6 +7,6 @@
     android:paddingTop="@dimen/category_info_margin"
     android:paddingBottom="@dimen/category_info_margin"
     tools:showIn="@layout/settings_activity"
-    tools:context=".ui.SettingsActivityFragment">
+    tools:context=".ui.fragments.SettingsActivityFragment">
 
 </RelativeLayout>

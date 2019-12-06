@@ -44,13 +44,6 @@ public class SplashActivity extends AppCompatActivity {
     private class PrefetchData extends AsyncTask<Void, Void, Void> {
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // before making http calls
-
-        }
-
-        @Override
         protected Void doInBackground(Void... arg0) {
 
             DatabaseFilling.fillingAsync(Database.getInstance(getApplicationContext()));

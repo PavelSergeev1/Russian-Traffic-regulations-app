@@ -1,4 +1,4 @@
-package app.pavel.pdd.ui;
+package app.pavel.pdd.ui.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.preference.PreferenceFragmentCompat;
 
 import app.pavel.pdd.R;
+import app.pavel.pdd.ui.LaunchActivity;
 
 
 public class SettingsActivityFragment extends PreferenceFragmentCompat

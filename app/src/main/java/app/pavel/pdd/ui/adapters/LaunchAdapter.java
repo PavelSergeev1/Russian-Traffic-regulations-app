@@ -1,4 +1,4 @@
-package app.pavel.pdd.ui;
+package app.pavel.pdd.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import java.util.List;
 
 import app.pavel.pdd.R;
 import app.pavel.pdd.data.Launch;
+import app.pavel.pdd.ui.LaunchActivity;
 import app.pavel.pdd.utils.HandbookLiveDataRoom;
 
 public class LaunchAdapter extends
@@ -25,11 +26,13 @@ public class LaunchAdapter extends
         void onItemClickListener(String itemTitle);
     }
 
+    private final Context context;
     private List<Launch> data;
     private final LayoutInflater layoutInflater;
     private final OnLaunchItemClickListener onLaunchItemClickListener;
 
-    LaunchAdapter(Context context, OnLaunchItemClickListener listener) {
+    public LaunchAdapter(Context context, OnLaunchItemClickListener listener) {
+        this.context = context;
         this.data = new ArrayList<>();
         this.onLaunchItemClickListener = listener;
         this.layoutInflater = (LayoutInflater)
@@ -71,7 +74,7 @@ public class LaunchAdapter extends
 
                 String imageName = launch.getImageName();
 
-                int resID = HandbookLiveDataRoom.getContext().getResources()
+                int resID = context.getResources()
                         .getIdentifier(imageName, "drawable",
                                 HandbookLiveDataRoom.getThisPackageName());
 
@@ -100,7 +103,7 @@ public class LaunchAdapter extends
         }
     }
 
-    void setLaunchData(List<Launch> newData) {
+    public void setLaunchData(List<Launch> newData) {
         if (data != null) {
             LaunchDiffCallback launchDiffCallback = new LaunchDiffCallback(data, newData);
             DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(launchDiffCallback);

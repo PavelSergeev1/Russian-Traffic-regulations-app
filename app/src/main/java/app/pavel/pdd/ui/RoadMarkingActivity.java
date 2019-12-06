@@ -12,7 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import app.pavel.pdd.R;
+import app.pavel.pdd.ui.adapters.RoadMarkingAdapter;
 import app.pavel.pdd.utils.HandbookLiveDataRoom;
+import app.pavel.pdd.utils.MarginItemDecorator;
+import app.pavel.pdd.view_models.AppViewModel;
 
 import static app.pavel.pdd.ui.LaunchActivity.margin;
 
@@ -30,9 +33,7 @@ public class RoadMarkingActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_24dp);
 
-        toolbar.setNavigationOnClickListener(view -> {
-            finish();
-        });
+        toolbar.setNavigationOnClickListener(view -> finish());
 
         TextView toolbarRoadMarkingTextView = findViewById(R.id.toolbarRoadMarkingTextView);
         toolbarRoadMarkingTextView.setText("Дорожная разметка");

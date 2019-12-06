@@ -1,4 +1,4 @@
-package app.pavel.pdd.ui;
+package app.pavel.pdd.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,23 +15,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.pavel.pdd.R;
-import app.pavel.pdd.data.TrafficRules;
+import app.pavel.pdd.data.TrafficSigns;
+import app.pavel.pdd.ui.LaunchActivity;
 import app.pavel.pdd.utils.HandbookLiveDataRoom;
 
-public class TrafficRulesAdapter extends
-        RecyclerView.Adapter<TrafficRulesAdapter.ViewHolder>{
+public class TrafficSignsAdapter extends
+        RecyclerView.Adapter<TrafficSignsAdapter.ViewHolder> {
 
-    public interface OnRuleClickListener {
-        void onRuleClickListener(String ruleTitle);
+    public interface OnSignClickListener {
+        void onSignClickListener(String signTitle);
     }
 
-    private List<TrafficRules> data;
+    private final Context context;
+    private List<TrafficSigns> data;
     private final LayoutInflater layoutInflater;
-    private final OnRuleClickListener onRuleClickListener;
+    private final OnSignClickListener onSignClickListener;
 
-    TrafficRulesAdapter(Context context, OnRuleClickListener listener) {
+    public TrafficSignsAdapter(Context context, OnSignClickListener listener) {
+        this.context = context;
         this.data = new ArrayList<>();
-        this.onRuleClickListener = listener;
+        this.onSignClickListener = listener;
         this.layoutInflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -54,21 +57,6 @@ public class TrafficRulesAdapter extends
         return data.size();
     }
 
-    public void setData(List<TrafficRules> newData) {
-        if (data != null) {
-            CategoryDiffCallback categoryDiffCallback = new CategoryDiffCallback(data, newData);
-            DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(categoryDiffCallback);
-
-            data.clear();
-            data.addAll(newData);
-            diffResult.dispatchUpdatesTo(this);
-        }
-        else {
-            // first initialization
-            data = newData;
-        }
-    }
-
     class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView imageView;
         private final TextView tvTitle;
@@ -80,61 +68,78 @@ public class TrafficRulesAdapter extends
             tvTitle = itemView.findViewById(R.id.textViewTitle);
         }
 
-        void bind(final TrafficRules trafficRules) {
-            if (trafficRules != null) {
+        void bind(final TrafficSigns trafficSigns) {
+            if (trafficSigns != null) {
 
-                String imageName = trafficRules.getImageName();
+                String imageName = trafficSigns.getImageName();
 
-                int resID = HandbookLiveDataRoom.getContext().getResources()
+                int resID = context.getResources()
                         .getIdentifier(imageName, "drawable",
                                 HandbookLiveDataRoom.getThisPackageName());
 
                 imageView.setImageResource(resID);
 
-                tvTitle.setText(trafficRules.getTitle());
+                tvTitle.setText(trafficSigns.getTitle());
                 tvTitle.setTypeface(
                         HandbookLiveDataRoom.getTypefaceByTitle(LaunchActivity.currentFont));
                 tvTitle.setTextSize(HandbookLiveDataRoom.getTitleTextViewSize(
                         LaunchActivity.currentTextSize));
 
                 itemView.setOnClickListener(view -> {
-                    if (onRuleClickListener != null)
-                        onRuleClickListener.onRuleClickListener(trafficRules.getTitle());
+                    if (onSignClickListener != null)
+                        onSignClickListener.onSignClickListener(trafficSigns.getTitle());
                 });
 
             }
         }
     }
 
-    class CategoryDiffCallback extends DiffUtil.Callback {
+    public void setData(List<TrafficSigns> newData) {
+        if (data != null) {
+            CategoryDiffCallBack categoryDiffCallBack = new CategoryDiffCallBack(data, newData);
+            DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(categoryDiffCallBack);
 
-        private final List<TrafficRules> oldCategories, newCategories;
+            data.clear();
+            data.addAll(newData);
+            diffResult.dispatchUpdatesTo(this);
+        }
+        else {
+            // first initialization
+            data = newData;
+        }
+    }
 
-        CategoryDiffCallback(List<TrafficRules> oldCategories, List<TrafficRules> newCategories) {
-            this.oldCategories = oldCategories;
-            this.newCategories = newCategories;
+    class CategoryDiffCallBack extends DiffUtil.Callback {
+
+        private final List<TrafficSigns> oldSigns, newSigns;
+
+        CategoryDiffCallBack(List<TrafficSigns> oldSigns, List<TrafficSigns> newSigns) {
+            this.oldSigns = oldSigns;
+            this.newSigns = newSigns;
         }
 
         @Override
         public int getOldListSize() {
-            return oldCategories.size();
+            return oldSigns.size();
         }
 
         @Override
         public int getNewListSize() {
-            return newCategories.size();
+            return newSigns.size();
         }
 
         @Override
         public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldCategories.get(oldItemPosition).getTitle()
-                    .equals(newCategories.get(newItemPosition).getTitle());
+
+            return oldSigns.get(oldItemPosition).getTitle()
+                    .equals(newSigns.get(newItemPosition).getTitle());
         }
 
         @Override
         public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldCategories.get(oldItemPosition).equals(newCategories.get(newItemPosition));
+
+            return oldSigns.get(oldItemPosition).equals(newSigns.get(newItemPosition));
         }
     }
-    
+
 }
