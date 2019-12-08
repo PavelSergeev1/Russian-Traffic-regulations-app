@@ -35,7 +35,7 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
+        android:layout_weight="5"
         android:isScrollContainer="true">
 
         <LinearLayout
@@ -47,9 +47,9 @@
                 android:id="@+id/textViewCategoryTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/text_margin_start_end_portrait"
-                android:layout_marginTop="@dimen/text_margin_top_bottom_portrait"
-                android:layout_marginEnd="@dimen/text_margin_start_end_portrait"
+                android:layout_marginStart="@dimen/text_margin_start_end_landscape"
+                android:layout_marginTop="@dimen/text_margin_top_bottom_landscape"
+                android:layout_marginEnd="@dimen/text_margin_start_end_landscape"
                 android:gravity="center"
                 android:textColor="@color/color_black"
                 tools:text="@tools:sample/lorem" />
@@ -58,10 +58,10 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/text_margin_start_end_portrait"
-                android:layout_marginTop="@dimen/text_margin_top_bottom_portrait"
-                android:layout_marginEnd="@dimen/text_margin_start_end_portrait"
-                android:layout_marginBottom="@dimen/text_margin_top_bottom_portrait"
+                android:layout_marginStart="@dimen/text_margin_start_end_landscape"
+                android:layout_marginTop="@dimen/text_margin_top_bottom_landscape"
+                android:layout_marginEnd="@dimen/text_margin_start_end_landscape"
+                android:layout_marginBottom="@dimen/text_margin_top_bottom_landscape"
                 android:orientation="vertical" />
         </LinearLayout>
     </ScrollView>

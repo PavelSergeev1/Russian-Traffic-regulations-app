@@ -15,6 +15,17 @@
 
     <string name="text_size">Размер текста</string>
     <string name="text_size_description">Выберите удобный для чтения размер шрифта</string>
+    
+    <string name="about">О приложении</string>
+    <string name="about_title">Версия ПДД</string>
+    <string name="about_title_summary">ред. от 04.12.2018</string>
+    <string name="about_version">Версия приложения</string>
+    <string name="about_version_summary">1.0.0</string>
+    
+    <string name="feedback">Обратная связь</string>
+    <string name="feedback_rate">Оставить отзыв</string>
+    <string name="feedback_rate_summary">Оцените приложение в Google Play</string>
+    <string name="feedback_rate_url">https://play.google.com/store/apps/details?id=app.pavel.pdd</string>
 
     <string name="app_id">ca-app-pub-7512755405624159~2397475545</string>
     <string name="ad_id">ca-app-pub-7512755405624159/1476982409</string>

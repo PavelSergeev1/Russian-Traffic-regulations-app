@@ -53,11 +53,11 @@
 
     <string-array name="launch_image_name">
 
-        <item>ic_6_2</item>
+        <item>ic_4_1_1</item>
         <item>ic_2_1</item>
-        <item>ic_rm_1_14_1</item>
+        <item>ic_rm_1_6</item>
         <item>ic_8_4_3</item>
-        <item>ic_8_4_2</item>
+        <item>ic_7_4</item>
 
     </string-array>
 

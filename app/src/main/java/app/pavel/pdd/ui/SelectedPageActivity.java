@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,9 +45,9 @@ public class SelectedPageActivity extends AppCompatActivity {
     private AdView mAdView;
 
     private static final LinearLayout.LayoutParams layoutParams =
-            new LinearLayout.LayoutParams(400, 200);
+            new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200);
     private static final LinearLayout.LayoutParams layoutParamsRM =
-            new LinearLayout.LayoutParams(500, 250);
+            new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 250);
     private static final LinearLayout.LayoutParams layoutParamsMP =
             new LinearLayout.LayoutParams(200, 200);
 

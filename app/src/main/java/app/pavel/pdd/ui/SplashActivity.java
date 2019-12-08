@@ -12,6 +12,7 @@ import com.google.android.gms.ads.MobileAds;
 import app.pavel.pdd.R;
 import app.pavel.pdd.data.Database;
 import app.pavel.pdd.utils.DatabaseFilling;
+import app.pavel.pdd.utils.HandbookLiveDataRoom;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -27,9 +28,15 @@ public class SplashActivity extends AppCompatActivity {
 
             MobileAds.initialize(this, getResources().getString(R.string.app_id));
 
-            new PrefetchData().execute();
+            new PrefetchData(new PrefetchData.AsyncResponse() {
+                @Override
+                public void processFinished(Boolean output) {
 
-            preferences.edit().putBoolean("first_run", false).apply();
+                    preferences.edit().putBoolean("first_run", false).apply();
+
+                    goToLaunchActivity();
+                }
+            }).execute();
         }
         else {
             Intent intent = new Intent(SplashActivity.this, LaunchActivity.class);
@@ -41,12 +48,22 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    private class PrefetchData extends AsyncTask<Void, Void, Void> {
+    private static class PrefetchData extends AsyncTask<Void, Void, Void> {
+
+        public interface AsyncResponse {
+            void processFinished(Boolean output);
+        }
+
+        AsyncResponse asyncResponse;
+
+        PrefetchData(AsyncResponse asyncResponse) {
+            this.asyncResponse = asyncResponse;
+        }
 
         @Override
         protected Void doInBackground(Void... arg0) {
 
-            DatabaseFilling.fillingAsync(Database.getInstance(getApplicationContext()));
+            DatabaseFilling.fillingAsync(Database.getInstance(HandbookLiveDataRoom.getContext()));
 
             return null;
         }
@@ -55,12 +72,16 @@ public class SplashActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            Intent intent = new Intent(SplashActivity.this, LaunchActivity.class);
-            intent.putExtra("first_run", true);
-            startActivity(intent);
-
-            finish();
+            asyncResponse.processFinished(true);
         }
+    }
+
+    private void goToLaunchActivity() {
+        Intent intent = new Intent(SplashActivity.this, LaunchActivity.class);
+        intent.putExtra("first_run", true);
+        startActivity(intent);
+
+        finish();
     }
 
 }

@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="@string/text"
-        app:allowDividerBelow="true">
+        android:title="@string/text">
 
         <ListPreference
             android:defaultValue="text_medium"
@@ -25,8 +24,37 @@
             android:icon="@drawable/ic_format_color_text_24dp"
             android:summary="@string/text_font_description"
             android:title="@string/text_font"
-            android:negativeButtonText="@string/title_cancel"
-            app:allowDividerAbove="true" />
+            android:negativeButtonText="@string/title_cancel" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/about">
+
+        <Preference
+            android:title="@string/about_title"
+            android:summary="@string/about_title_summary"
+            android:icon="@drawable/ic_description_24dp">
+        </Preference>
+        <Preference
+            android:title="@string/about_version"
+            android:summary="@string/about_version_summary"
+            android:icon="@drawable/ic_build_24dp">
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/feedback">
+
+        <Preference
+            android:title="@string/feedback_rate"
+            android:summary="@string/feedback_rate_summary"
+            android:icon="@drawable/ic_star_half_24dp">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/feedback_rate_url" />
+        </Preference>
 
     </PreferenceCategory>
 

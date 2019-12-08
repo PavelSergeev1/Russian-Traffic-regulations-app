@@ -22,7 +22,7 @@ public class HandbookLiveDataRoom extends Application {
         return sApplication;
     }
 
-    private static Context getContext() {
+    public static Context getContext() {
         return getApplication().getApplicationContext();
     }
 
