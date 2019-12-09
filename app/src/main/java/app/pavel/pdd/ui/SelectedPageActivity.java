@@ -19,9 +19,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
 import java.util.List;
 
 import app.pavel.pdd.R;
@@ -104,8 +107,8 @@ public class SelectedPageActivity extends AppCompatActivity {
         if (isNetworkAvailable()) {
             mAdView = findViewById(R.id.adViewSelectedPage);
             mAdView.setVisibility(View.VISIBLE);
+
             AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice("1234567")
                     .build();
             mAdView.loadAd(adRequest);
         }

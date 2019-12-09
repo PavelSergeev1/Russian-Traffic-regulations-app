@@ -73,7 +73,7 @@
         android:id="@+id/adViewSelectedPage"
         android:visibility="gone"
         app:adSize="BANNER"
-        app:adUnitId="@string/ad_id_test">
+        app:adUnitId="@string/ad_id">
     </com.google.android.gms.ads.AdView>
 
 </LinearLayout>
