@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
         android:title="@string/text">
@@ -15,6 +14,7 @@
             android:summary="@string/text_size_description"
             android:title="@string/text_size"
             android:negativeButtonText="@string/title_cancel" />
+
         <ListPreference
             android:defaultValue="open_sans"
             android:entries="@array/list_of_fonts_for_settings"

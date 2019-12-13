@@ -19,7 +19,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
 
         SharedPreferences preferences =
                 getSharedPreferences("app.pavel.handbooklivedataroom", MODE_PRIVATE);
@@ -50,11 +49,11 @@ public class SplashActivity extends AppCompatActivity {
 
     private static class PrefetchData extends AsyncTask<Void, Void, Void> {
 
-        public interface AsyncResponse {
+        interface AsyncResponse {
             void processFinished(Boolean output);
         }
 
-        AsyncResponse asyncResponse;
+        final AsyncResponse asyncResponse;
 
         PrefetchData(AsyncResponse asyncResponse) {
             this.asyncResponse = asyncResponse;

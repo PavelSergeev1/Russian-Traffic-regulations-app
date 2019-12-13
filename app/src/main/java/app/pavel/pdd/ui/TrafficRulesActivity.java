@@ -56,6 +56,13 @@ public class TrafficRulesActivity extends AppCompatActivity
     }
 
     @Override
+    public void finish() {
+        super.finish();
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
     public void onRuleClickListener(String trafficRuleTitle) {
         // start SelectedRuleActivity
         Intent intent = new Intent(this, SelectedPageActivity.class);
@@ -64,6 +71,7 @@ public class TrafficRulesActivity extends AppCompatActivity
         intent.putExtra("parentActivity", "TrafficRulesActivity");
         startActivity(intent);
 
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
 }

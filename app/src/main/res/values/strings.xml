@@ -20,7 +20,7 @@
     <string name="about_title">Версия ПДД</string>
     <string name="about_title_summary">ред. от 04.12.2018</string>
     <string name="about_version">Версия приложения</string>
-    <string name="about_version_summary">1.0.0</string>
+    <string name="about_version_summary">1.0.1</string>
     
     <string name="feedback">Обратная связь</string>
     <string name="feedback_rate">Оставить отзыв</string>

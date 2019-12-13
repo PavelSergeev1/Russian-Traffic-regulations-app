@@ -96,6 +96,9 @@ public class LaunchActivity extends AppCompatActivity
         Intent preferenceIntent = new Intent(this, SettingsActivity.class);
         preferenceIntent.putExtra("textFont", currentFont);
         startActivity(preferenceIntent);
+
+        addAnimation();
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -122,16 +125,23 @@ public class LaunchActivity extends AppCompatActivity
             case "Правила дорожного движения РФ": {
                 Intent intent = new Intent(this, TrafficRulesActivity.class);
                 startActivity(intent);
+
+                addAnimation();
+
                 break;
             }
             case "Дорожные знаки": {
                 Intent intent = new Intent(this, TrafficSignsActivity.class);
                 startActivity(intent);
+                addAnimation();
                 break;
             }
             case "Дорожная разметка и ее характеристики": {
                 Intent intent = new Intent(this, RoadMarkingActivity.class);
                 startActivity(intent);
+
+                addAnimation();
+
                 break;
             }
             case "Основные положения по допуску транспортных средств к " +
@@ -145,6 +155,9 @@ public class LaunchActivity extends AppCompatActivity
                 intent.putExtra("toolbarTitle", "Положения по допуску");
                 intent.putExtra("parentActivity", "MainProvisions");
                 startActivity(intent);
+
+                addAnimation();
+
                 break;
             }
             case "Перечень неисправностей и условий, при которых запрещается " +
@@ -155,10 +168,17 @@ public class LaunchActivity extends AppCompatActivity
                 intent.putExtra("toolbarTitle", "Перечень неисправностей");
                 intent.putExtra("parentActivity", "ListOfMalfunctions");
                 startActivity(intent);
+
+                addAnimation();
+
                 break;
             }
         }
 
+    }
+
+    private void addAnimation() {
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     public static class UpdateRecyclerView {

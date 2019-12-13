@@ -22,6 +22,7 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/app_id"/>
         <activity android:name="app.pavel.pdd.ui.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,13 +32,13 @@
         </activity>
         <activity
             android:name="app.pavel.pdd.ui.LaunchActivity"
-            android:theme="@style/noAnimTheme">
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name="app.pavel.pdd.ui.SettingsActivity"
             android:label="@string/title_settings"
             android:parentActivityName="app.pavel.pdd.ui.LaunchActivity"
-            android:theme="@style/noAnimTheme">
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="app.pavel.pdd.ui.LaunchActivity" />
@@ -45,7 +46,7 @@
         <activity
             android:name="app.pavel.pdd.ui.TrafficRulesActivity"
             android:parentActivityName="app.pavel.pdd.ui.LaunchActivity"
-            android:theme="@style/noAnimTheme">
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="app.pavel.pdd.ui.LaunchActivity" />
@@ -53,7 +54,7 @@
         <activity
             android:name="app.pavel.pdd.ui.TrafficSignsActivity"
             android:parentActivityName="app.pavel.pdd.ui.LaunchActivity"
-            android:theme="@style/noAnimTheme">
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="app.pavel.pdd.ui.LaunchActivity" />
@@ -61,14 +62,14 @@
         <activity
             android:name="app.pavel.pdd.ui.RoadMarkingActivity"
             android:parentActivityName="app.pavel.pdd.ui.LaunchActivity"
-            android:theme="@style/noAnimTheme">
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="app.pavel.pdd.ui.LaunchActivity" />
         </activity>
         <activity
             android:name="app.pavel.pdd.ui.SelectedPageActivity"
-            android:theme="@style/noAnimTheme" />
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

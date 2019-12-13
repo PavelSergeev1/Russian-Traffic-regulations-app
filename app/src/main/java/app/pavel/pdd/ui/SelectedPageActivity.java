@@ -17,14 +17,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.TextViewCompat;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.RequestConfiguration;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
 import java.util.List;
 
 import app.pavel.pdd.R;
@@ -104,13 +102,31 @@ public class SelectedPageActivity extends AppCompatActivity {
         layoutParamsRM.gravity = Gravity.CENTER;
         layoutParamsMP.gravity = Gravity.CENTER;
 
-        if (isNetworkAvailable()) {
-            mAdView = findViewById(R.id.adViewSelectedPage);
-            mAdView.setVisibility(View.VISIBLE);
+        mAdView = findViewById(R.id.adViewSelectedPage);
 
+        if (isNetworkAvailable()) {
             AdRequest adRequest = new AdRequest.Builder()
                     .build();
             mAdView.loadAd(adRequest);
+
+            mAdView.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+
+                    mAdView.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAdFailedToLoad(int code) {
+                    super.onAdFailedToLoad(code);
+
+                    mAdView.setVisibility(View.GONE);
+                }
+            });
+
+        } else {
+            mAdView.setVisibility(View.GONE);
         }
     }
 
@@ -145,6 +161,13 @@ public class SelectedPageActivity extends AppCompatActivity {
         super.onBackPressed();
 
         finish();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     @Override

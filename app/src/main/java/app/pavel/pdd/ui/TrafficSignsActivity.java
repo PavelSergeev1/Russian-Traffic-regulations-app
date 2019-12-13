@@ -57,11 +57,20 @@ public class TrafficSignsActivity extends AppCompatActivity
     }
 
     @Override
+    public void finish() {
+        super.finish();
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
     public void onSignClickListener(String trafficSignTitle) {
         Intent intent = new Intent(this, SelectedPageActivity.class);
         intent.putExtra("Title", trafficSignTitle);
         intent.putExtra("toolbarTitle", "Дорожные знаки");
         intent.putExtra("parentActivity", "TrafficSignsActivity");
         startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }
