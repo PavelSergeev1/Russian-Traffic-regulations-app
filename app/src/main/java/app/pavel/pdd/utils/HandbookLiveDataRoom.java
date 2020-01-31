@@ -1,9 +1,9 @@
 package app.pavel.pdd.utils;
 
 import android.app.Application;
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Typeface;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
 import app.pavel.pdd.R;
@@ -16,15 +16,10 @@ public class HandbookLiveDataRoom extends Application {
     private static Typeface montserratRegular, openSans, PTSansRegular, robotoMonoLight,
             robotoRegular, rubikRegular, ubuntuRegular;
 
-    private static Application sApplication;
+    private static float textTitleSmall, textTitleMedium, textTitleBig, textSmall, textMedium,
+        textBig;
 
-    private static Application getApplication() {
-        return sApplication;
-    }
-
-    public static Context getContext() {
-        return getApplication().getApplicationContext();
-    }
+    private static DisplayMetrics metrics;
 
     @Override
     public void onCreate() {
@@ -33,22 +28,35 @@ public class HandbookLiveDataRoom extends Application {
         resources = getResources();
         packageName = getPackageName();
 
-        sApplication = this;
-
         montserratRegular = Typeface.createFromAsset(
-                getContext().getAssets(), "fonts/montserrat_regular.ttf");
+                getApplicationContext().getAssets(), "fonts/montserrat_regular.ttf");
         openSans = Typeface.createFromAsset(
-                getContext().getAssets(), "fonts/open_sans.ttf");
+                getApplicationContext().getAssets(), "fonts/open_sans.ttf");
         PTSansRegular = Typeface.createFromAsset(
-                getContext().getAssets(), "fonts/pt_sans_regular.ttf");
+                getApplicationContext().getAssets(), "fonts/pt_sans_regular.ttf");
         robotoRegular = Typeface.createFromAsset(
-                getContext().getAssets(), "fonts/roboto_regular.ttf");
+                getApplicationContext().getAssets(), "fonts/roboto_regular.ttf");
         robotoMonoLight = Typeface.createFromAsset(
-                getContext().getAssets(), "fonts/roboto_mono_light.ttf");
+                getApplicationContext().getAssets(), "fonts/roboto_mono_light.ttf");
         rubikRegular = Typeface.createFromAsset(
-                getContext().getAssets(), "fonts/rubik_regular.ttf");
+                getApplicationContext().getAssets(), "fonts/rubik_regular.ttf");
         ubuntuRegular = Typeface.createFromAsset(
-                getContext().getAssets(), "fonts/ubuntu_regular.ttf");
+                getApplicationContext().getAssets(), "fonts/ubuntu_regular.ttf");
+
+        textTitleBig = getApplicationContext().getResources()
+                .getDimension(R.dimen.title_text_big);
+        textTitleMedium = getApplicationContext().getResources()
+                .getDimension(R.dimen.title_text_medium);
+        textTitleSmall = getApplicationContext().getResources()
+                .getDimension(R.dimen.title_text_small);
+        textBig = getApplicationContext().getResources()
+                .getDimension(R.dimen.text_big);
+        textMedium = getApplicationContext().getResources()
+                .getDimension(R.dimen.text_medium);
+        textSmall = getApplicationContext().getResources()
+                .getDimension(R.dimen.text_small);
+
+        metrics = getApplicationContext().getResources().getDisplayMetrics();
     }
 
     public static Resources getHandbookLiveDataRoomResources() {
@@ -95,18 +103,15 @@ public class HandbookLiveDataRoom extends Application {
         switch (textSize) {
             case "text_medium":
                 size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                        getContext().getResources().getDimension(R.dimen.title_text_medium),
-                        getContext().getResources().getDisplayMetrics());
+                        textTitleMedium, metrics);
                 break;
             case "text_big":
                 size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                        getContext().getResources().getDimension(R.dimen.title_text_big),
-                        getContext().getResources().getDisplayMetrics());
+                        textTitleBig, metrics);
                 break;
             default:
                 size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                        getContext().getResources().getDimension(R.dimen.title_text_small),
-                        getContext().getResources().getDisplayMetrics());
+                        textTitleSmall, metrics);
         }
 
        return size;
@@ -117,18 +122,15 @@ public class HandbookLiveDataRoom extends Application {
         switch (textSize) {
             case "text_medium":
                 size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                        getContext().getResources().getDimension(R.dimen.text_medium),
-                        getContext().getResources().getDisplayMetrics());
+                        textMedium, metrics);
                 break;
             case "text_big":
                 size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                        getContext().getResources().getDimension(R.dimen.text_big),
-                        getContext().getResources().getDisplayMetrics());
+                        textBig, metrics);
                 break;
             default:
                 size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                        getContext().getResources().getDimension(R.dimen.text_small),
-                        getContext().getResources().getDisplayMetrics());
+                        textSmall, metrics);
         }
         return size;
     }

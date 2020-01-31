@@ -11,8 +11,6 @@ import app.pavel.pdd.utils.HandbookLiveDataRoom;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private TextView toolbarLaunchTextView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +21,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         toolbar.setNavigationIcon(R.drawable.ic_arrow_24dp);
 
-        toolbarLaunchTextView = findViewById(R.id.toolbarSettingsTextView);
+        TextView toolbarLaunchTextView = findViewById(R.id.toolbarSettingsTextView);
         toolbarLaunchTextView.setText("Настройки");
         toolbarLaunchTextView.setTypeface(
                 HandbookLiveDataRoom.getTypefaceByTitle(LaunchActivity.currentFont));

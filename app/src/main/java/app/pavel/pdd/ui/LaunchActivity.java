@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -27,6 +28,8 @@ import app.pavel.pdd.view_models.AppViewModel;
 public class LaunchActivity extends AppCompatActivity
     implements LaunchAdapter.OnLaunchItemClickListener {
 
+    public static boolean isTextSettingsChanged = false;
+
     public static final int margin = 20;
 
     private static final String FONTS = "pref_text_font";
@@ -35,7 +38,7 @@ public class LaunchActivity extends AppCompatActivity
     public static String currentFont;
     public static String currentTextSize;
 
-    private static LaunchAdapter launchAdapter;
+    private LaunchAdapter launchAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +114,6 @@ public class LaunchActivity extends AppCompatActivity
 
                     if (key.equals(FONTS)) {
                         currentFont = sharedPreferences.getString(FONTS, null);
-                        //Log.e("FONT FONT FONT FONT", Objects.requireNonNull(currentFont));
                     }
                     if (key.equals(SIZES)) {
                         currentTextSize = sharedPreferences.getString(SIZES, null);
@@ -147,7 +149,6 @@ public class LaunchActivity extends AppCompatActivity
             case "Основные положения по допуску транспортных средств к " +
                     "эксплуатации и обязанности должностных лиц по обеспечению безопасности " +
                     "дорожного движения": {
-                // start SelectedPageActivity
                 Intent intent = new Intent(this, SelectedPageActivity.class);
                 intent.putExtra("Title", "Основные положения по допуску транспортных " +
                         "средств к эксплуатации и обязанности должностных лиц по обеспечению " +
@@ -181,10 +182,13 @@ public class LaunchActivity extends AppCompatActivity
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public static class UpdateRecyclerView {
-        public void onUpdateRecyclerView() {
+    @Override
+    public void onRestart() {
+        super.onRestart();
 
+        if (isTextSettingsChanged) {
             launchAdapter.notifyDataSetChanged();
+            isTextSettingsChanged = false;
         }
     }
 

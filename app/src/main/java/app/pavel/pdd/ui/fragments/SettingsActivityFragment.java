@@ -35,8 +35,6 @@ public class SettingsActivityFragment extends PreferenceFragmentCompat
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-
-        LaunchActivity.UpdateRecyclerView updateRecyclerView = new LaunchActivity.UpdateRecyclerView();
-        updateRecyclerView.onUpdateRecyclerView();
+        LaunchActivity.isTextSettingsChanged = true;
     }
 }

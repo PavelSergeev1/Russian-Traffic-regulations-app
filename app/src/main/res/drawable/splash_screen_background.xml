@@ -5,8 +5,8 @@
 
     <item>
         <bitmap
-            android:src="@drawable/launch"
-            android:tileMode="disabled"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:src="@mipmap/ic_launcher"/>
     </item>
+
 </layer-list>
